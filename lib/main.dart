@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:u_chow/screens/cart.dart';
 import 'package:u_chow/screens/dishdetail.dart';
 import 'package:u_chow/screens/explore.dart';
 import 'package:u_chow/utils/colors.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Raleway',
       ),
-      home: const DishDetail(),
+      home: const Cart(),
     );
   }
 }
