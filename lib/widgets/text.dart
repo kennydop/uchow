@@ -38,6 +38,8 @@ class AppText extends StatelessWidget {
       case 'subtext':
         return Text(
           text,
+          overflow: overflow,
+          maxLines: ignoreOverflow == true ? 999 : 1,
           style: TextStyle(
               color: color ?? const Color(0xFF626262),
               fontSize: size ?? AppDimensions.height10,
@@ -48,6 +50,8 @@ class AppText extends StatelessWidget {
       default:
         return Text(
           text,
+          overflow: overflow,
+          maxLines: ignoreOverflow == true ? 999 : 1,
           style: TextStyle(
               color: color ?? const Color(0xFF707070),
               fontSize: size ?? AppDimensions.height16),

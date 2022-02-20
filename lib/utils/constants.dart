@@ -9,8 +9,8 @@ var physicalHeight = physicalScreenSize.height;
 
 //Size in logical pixels
 var logicalScreenSize = window.physicalSize / pixelRatio;
-var logicalWidth = logicalScreenSize.width;
-var logicalHeight = logicalScreenSize.height;
+var logicalWidth = logicalScreenSize.width; //480
+var logicalHeight = logicalScreenSize.height; //640
 
 //Padding in physical pixels
 var padding = window.padding;
@@ -35,9 +35,11 @@ class AppDimensions {
   static double height1p2 = logicalHeight / 533.3333334; //1.2
   static double height3 = logicalHeight / 160; //3
   static double height6 = logicalHeight / 106.7; //6
+  static double height8 = logicalHeight / 80; //8
   static double height10 = logicalHeight / 64; //10
   static double height11 = logicalHeight / 58.1818182; //11
   static double height12 = logicalHeight / 53.333334; //12
+  static double height14 = logicalHeight / 45.714286; //14
   static double height15 = logicalHeight / 42.66667; //15
   static double height16 = logicalHeight / 40; //16
   static double height18 = logicalHeight / 35.5555556; //18
@@ -56,6 +58,7 @@ class AppDimensions {
   static double width3 = logicalWidth / 120; //3
   static double width4 = logicalWidth / 90; //4
   static double width6 = logicalWidth / 60; //6
+  static double width8 = logicalWidth / 45; //8
   static double width10 = logicalWidth / 36; //10
   static double width11 = logicalWidth / 32.727273; //11
   static double width16 = logicalWidth / 22.5; //16

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Raleway',
       ),
-      home: const Cart(),
+      home: const DishDetail(),
     );
   }
 }

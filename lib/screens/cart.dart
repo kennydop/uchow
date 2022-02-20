@@ -95,6 +95,14 @@ class _CartState extends State<Cart> {
                             SizedBox(
                               height: AppDimensions.height3,
                             ),
+                            AppText(
+                              type: "subtext",
+                              size: AppDimensions.height14,
+                              text: "Salad, Mayoneese, Tomato Sauce, Spaghetti",
+                            ),
+                            SizedBox(
+                              height: AppDimensions.height3,
+                            ),
                             Row(
                               children: [
                                 AppText(
@@ -115,14 +123,15 @@ class _CartState extends State<Cart> {
                       children: [
                         InkWell(
                             child: Ink(
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: AppDimensions.height6),
-                                child: AppText(
-                                    text: "-", size: AppDimensions.height22),
-                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: AppDimensions.width8),
+                              child: AppText(
+                                  text: "-", size: AppDimensions.height22),
                             ),
                             onTap: () {}),
+                        SizedBox(
+                          width: AppDimensions.width4,
+                        ),
                         Container(
                           height: AppDimensions.height24,
                           width: AppDimensions.height24,
@@ -137,14 +146,15 @@ class _CartState extends State<Cart> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          width: AppDimensions.width4,
+                        ),
                         InkWell(
                             child: Ink(
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: AppDimensions.height6),
-                                child: AppText(
-                                    text: "+", size: AppDimensions.height22),
-                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: AppDimensions.width8),
+                              child: AppText(
+                                  text: "+", size: AppDimensions.height22),
                             ),
                             onTap: () {}),
                       ],
