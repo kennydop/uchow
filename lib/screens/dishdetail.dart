@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:u_chow/screens/cart.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
@@ -109,6 +110,9 @@ class _DishDetailState extends State<DishDetail> {
                                           if (addedToCart) {
                                             addedToCart = false;
                                           }
+                                          if (selectedPrice != null) {
+                                            selectedPrice = null;
+                                          }
                                           numberToOrder <= 1
                                               ? numberToOrder
                                               : numberToOrder--;
@@ -147,6 +151,9 @@ class _DishDetailState extends State<DishDetail> {
                                         setState(() {
                                           if (addedToCart) {
                                             addedToCart = false;
+                                          }
+                                          if (selectedPrice != null) {
+                                            selectedPrice = null;
                                           }
                                           numberToOrder >= 15
                                               ? numberToOrder
@@ -528,11 +535,14 @@ class _DishDetailState extends State<DishDetail> {
           ? const SizedBox.shrink()
           : FloatingActionButton(
               onPressed: () {
-                setState(() {
-                  addedToCart = true;
-                  selectedTopings = [];
-                  selectedPrice = null;
-                });
+                if (!addedToCart) {
+                  setState(() {
+                    addedToCart = true;
+                    selectedTopings = [];
+                  });
+                } else {
+                  Navigator.of(context).pushNamed(Cart.routeName);
+                }
               },
               child: Icon(addedToCart ? AppIcons.bag : Icons.add),
               backgroundColor: addedToCart
