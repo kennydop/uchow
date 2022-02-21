@@ -6,6 +6,7 @@ import 'package:u_chow/widgets/text.dart';
 
 class Cart extends StatefulWidget {
   const Cart({Key? key}) : super(key: key);
+  static const routeName = "/cart";
 
   @override
   _CartState createState() => _CartState();
@@ -130,7 +131,7 @@ class _CartState extends State<Cart> {
                             ),
                             onTap: () {}),
                         SizedBox(
-                          width: AppDimensions.width4,
+                          width: AppDimensions.width3,
                         ),
                         Container(
                           height: AppDimensions.height24,
@@ -147,7 +148,7 @@ class _CartState extends State<Cart> {
                           ),
                         ),
                         SizedBox(
-                          width: AppDimensions.width4,
+                          width: AppDimensions.width3,
                         ),
                         InkWell(
                             child: Ink(

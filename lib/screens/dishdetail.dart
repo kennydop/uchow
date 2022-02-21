@@ -8,6 +8,7 @@ import 'package:u_chow/widgets/text.dart';
 
 class DishDetail extends StatefulWidget {
   const DishDetail({Key? key}) : super(key: key);
+  static const routeName = "/dishdetail";
 
   @override
   State<DishDetail> createState() => _DishDetailState();
@@ -117,8 +118,8 @@ class _DishDetailState extends State<DishDetail> {
                                     width: AppDimensions.width4,
                                   ),
                                   Container(
-                                    height: AppDimensions.height24,
-                                    width: AppDimensions.height24,
+                                    height: AppDimensions.height28,
+                                    width: AppDimensions.height28,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
                                           AppDimensions.height3),
@@ -481,7 +482,9 @@ class _DishDetailState extends State<DishDetail> {
                                 color: AppColors.primaryColor),
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                       ),
                       InkWell(
                         child: Ink(

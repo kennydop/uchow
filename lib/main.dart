@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:u_chow/screens/bottom_navbar.dart';
 import 'package:u_chow/screens/cart.dart';
 import 'package:u_chow/screens/dishdetail.dart';
 import 'package:u_chow/screens/explore.dart';
+import 'package:u_chow/screens/profile.dart';
 import 'package:u_chow/utils/colors.dart';
 
 void main() {
@@ -19,7 +21,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Raleway',
       ),
-      home: const DishDetail(),
+      routes: {
+        BottomNavbar.routeName: (ctx) => const BottomNavbar(),
+        Explore.routeName: (ctx) => const Explore(),
+        DishDetail.routeName: (ctx) => const DishDetail(),
+        Cart.routeName: (ctx) => const Cart(),
+        Profile.routeName: (ctx) => const Profile(),
+      },
+      home: const BottomNavbar(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:u_chow/screens/profile.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
@@ -8,6 +9,7 @@ import 'package:u_chow/utils/dummydata.dart';
 
 class Explore extends StatefulWidget {
   const Explore({Key? key}) : super(key: key);
+  static const routeName = "/explore";
 
   @override
   _ExploreState createState() => _ExploreState();
@@ -44,12 +46,21 @@ class _ExploreState extends State<Explore> {
                                 AppText(text: "Good Morning, "),
                                 AppText(text: "Jude")
                               ]),
-                              CircleAvatar(
-                                  backgroundColor: AppColors.secondaryColor,
-                                  backgroundImage: const AssetImage(
-                                      'assets/images/pass.jpg'),
-                                  minRadius: AppDimensions.height22,
-                                  maxRadius: AppDimensions.height22)
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context)
+                                      .pushNamed(Profile.routeName);
+                                },
+                                child: Ink(
+                                  child: CircleAvatar(
+                                    backgroundColor: AppColors.secondaryColor,
+                                    backgroundImage: const AssetImage(
+                                        'assets/images/pass.jpg'),
+                                    minRadius: AppDimensions.height20,
+                                    maxRadius: AppDimensions.height20,
+                                  ),
+                                ),
+                              )
                             ]),
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,8 +198,8 @@ class _ExploreState extends State<Explore> {
                       height: AppMargin.vertical,
                     ),
                     SizedBox(
-                      height: 1000,
                       child: GridView.builder(
+                          shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
