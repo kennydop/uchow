@@ -42,7 +42,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
               label: "Explore",
               tooltip: "Explore"),
           BottomNavigationBarItem(
-              icon: Icon(AppIcons.heart),
+              icon: Icon(AppIcons.heart_empty),
               label: "Favorites",
               tooltip: "Favorites"),
           BottomNavigationBarItem(

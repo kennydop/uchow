@@ -180,7 +180,7 @@ class _ExploreState extends State<Explore> {
                             restaurant_: restaurant,
                           );
                         }),
-                  )
+                  ),
                 ],
               ),
             ],
