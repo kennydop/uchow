@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:u_chow/screens/filter.dart';
 import 'package:u_chow/screens/profile.dart';
+import 'package:u_chow/screens/search.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
@@ -72,31 +74,31 @@ class _ExploreState extends State<Explore> {
                     ],
                   )),
               Container(
-                width: double.infinity,
+                width: logicalWidth - (AppMargin.horizontal * 2),
                 height: AppDimensions.height38,
                 margin: EdgeInsets.symmetric(
                     vertical: AppMargin.vertical,
                     horizontal: AppMargin.horizontal),
-                padding: EdgeInsets.symmetric(horizontal: AppDimensions.width3),
+                padding: EdgeInsets.only(left: AppMargin.horizontal),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppDimensions.height12),
+                    borderRadius: BorderRadius.circular(AppDimensions.height10),
                     border: Border.all(color: AppColors.primaryColor)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(
-                      AppIcons.search,
-                      size: AppDimensions.height18,
-                      color: AppColors.subTextColor,
-                    ),
-                    SizedBox(
-                      width: AppMargin.horizontal,
-                    ),
-                    AppText(
-                        text: "Search",
-                        color: AppColors.subTextColor,
-                        size: AppDimensions.height16)
-                  ],
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(Search.routeName);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AppText(text: "Search", color: AppColors.subTextColor),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(Filter.routeName);
+                          },
+                          icon: Icon(Icons.tune_rounded,
+                              color: AppColors.primaryColor)),
+                    ],
+                  ),
                 ),
               ),
               Column(

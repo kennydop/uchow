@@ -4,8 +4,8 @@ import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/widgets/dish/bag_dish.dart';
 import 'package:u_chow/widgets/text.dart';
 
-class Cart extends StatelessWidget {
-  const Cart({Key? key}) : super(key: key);
+class Bag extends StatelessWidget {
+  const Bag({Key? key}) : super(key: key);
   static const routeName = "/cart";
 
   @override

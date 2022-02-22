@@ -17,7 +17,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   final List _pages = [
     const Explore(),
     const Favorites(),
-    const Cart(),
+    const Bag(),
   ];
 
   int _currentIndex = 0;

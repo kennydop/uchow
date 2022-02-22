@@ -546,7 +546,7 @@ class _DishDetailState extends State<DishDetail> {
                     selectedTopings = [];
                   });
                 } else {
-                  Navigator.of(context).pushNamed(Cart.routeName);
+                  Navigator.of(context).pushNamed(Bag.routeName);
                 }
               },
               child: Icon(addedToCart ? AppIcons.bag : Icons.add),
