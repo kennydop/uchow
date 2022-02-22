@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:u_chow/screens/bottom_navbar.dart';
-import 'package:u_chow/screens/cart.dart';
+import 'package:u_chow/screens/bag.dart';
 import 'package:u_chow/screens/dishdetail.dart';
 import 'package:u_chow/screens/explore.dart';
 import 'package:u_chow/screens/profile.dart';

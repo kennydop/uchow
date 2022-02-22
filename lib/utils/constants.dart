@@ -54,6 +54,7 @@ class AppDimensions {
   static double height52 = logicalHeight / 12.307; //52
   static double height80 = logicalHeight / 8; //80
   static double height100 = logicalHeight / 6.4; //100
+  static double height120 = logicalHeight / 5.3333333; //120
   //----------------------width---------------------------//
   static double width3 = logicalWidth / 120; //3
   static double width4 = logicalWidth / 90; //4
@@ -69,6 +70,8 @@ class AppDimensions {
   static double width44 = logicalWidth / 8.181819; //44
   static double width48 = logicalWidth / 7.5; //48
   static double width52 = logicalWidth / 6.92308; //52
+  static double width80 = logicalWidth / 6; //80
   static double width88 = logicalWidth / 4.1; //88
   static double width100 = logicalWidth / 3.6; //100
+  static double width120 = logicalWidth / 0.01111111; //120
 }

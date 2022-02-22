@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/screens/cart.dart';
+import 'package:u_chow/screens/bag.dart';
 import 'package:u_chow/screens/explore.dart';
 import 'package:u_chow/screens/favorites.dart';
 import 'package:u_chow/utils/app_icons.dart';

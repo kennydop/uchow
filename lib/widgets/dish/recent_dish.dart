@@ -6,11 +6,11 @@ import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/widgets/iconanddata.dart';
 import 'package:u_chow/widgets/text.dart';
 
-class Dish extends StatelessWidget {
+class RecentDish extends StatelessWidget {
   final dish;
   final restaurant_;
 
-  const Dish({
+  const RecentDish({
     Key? key,
     required this.dish,
     required this.restaurant_,
