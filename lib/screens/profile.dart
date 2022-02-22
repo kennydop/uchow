@@ -25,25 +25,21 @@ class Profile extends StatelessWidget {
           child: SafeArea(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    left: AppMargin.horizontal, top: AppMargin.vertical),
-                child: Row(children: [
-                  BackButton(
+              Row(children: [
+                if (ModalRoute.of(context)!.canPop)
+                  const BackButton(
                     color: AppColors.textColor,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  AppText(text: "Account", size: AppDimensions.height18)
-                ]),
-              ),
+                  )
+                else
+                  SizedBox(width: AppMargin.horizontal),
+                AppText(text: "Account", size: AppDimensions.height18)
+              ]),
               SizedBox(height: AppDimensions.height8),
               Center(
                 child: CircleAvatar(
                   backgroundColor: AppColors.secondaryColor,
                   backgroundImage: AssetImage("assets/images/pass.jpg"),
-                  maxRadius: AppDimensions.height52,
+                  maxRadius: AppDimensions.height48,
                 ),
               ),
               SizedBox(height: AppDimensions.height8),
@@ -57,6 +53,7 @@ class Profile extends StatelessWidget {
                       onTap: () {},
                     );
                   }),
+              SizedBox(height: AppDimensions.height8),
               TextButton(
                   onPressed: () {},
                   child: AppText(
@@ -67,9 +64,6 @@ class Profile extends StatelessWidget {
                     backgroundColor: AppColors.primaryColor,
                     minimumSize: Size(logicalWidth - (AppMargin.horizontal * 2),
                         AppDimensions.height38),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(2.0)),
-                    ),
                   )),
               SizedBox(height: AppDimensions.height8),
             ]),

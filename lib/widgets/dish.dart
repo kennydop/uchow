@@ -21,36 +21,36 @@ class Dish extends StatelessWidget {
     final restaurant = restaurant_[0];
     double boxHeight = logicalHeight * 0.33;
     double boxWidth = logicalWidth * 0.45555;
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).pushNamed(DishDetail.routeName);
-      },
-      child: Ink(
-        child: Container(
-          width: boxWidth,
-          height: boxHeight,
-          clipBehavior: Clip.antiAlias,
-          margin: EdgeInsets.symmetric(
-              horizontal: AppMargin.horizontal, vertical: AppMargin.vertical),
-          padding: EdgeInsets.all(AppDimensions.height0p5),
-          decoration: BoxDecoration(
-              color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(AppDimensions.height16),
-              boxShadow: [
-                BoxShadow(
-                    color: AppColors.secondaryColor.withOpacity(0.14),
-                    spreadRadius: 1,
-                    blurRadius: 6,
-                    offset: const Offset(1.6, 2.6))
-              ]),
-          child: Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(AppDimensions.height16),
-            ),
-            child: Stack(children: [
-              Column(
+    return Container(
+      width: boxWidth,
+      height: boxHeight,
+      clipBehavior: Clip.antiAlias,
+      margin: EdgeInsets.symmetric(
+          horizontal: AppMargin.horizontal, vertical: AppMargin.vertical),
+      padding: EdgeInsets.all(AppDimensions.height0p5),
+      decoration: BoxDecoration(
+          color: AppColors.primaryColor,
+          borderRadius: BorderRadius.circular(AppDimensions.height16),
+          boxShadow: [
+            BoxShadow(
+                color: AppColors.secondaryColor.withOpacity(0.14),
+                spreadRadius: 1,
+                blurRadius: 6,
+                offset: const Offset(1.6, 2.6))
+          ]),
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(AppDimensions.height16),
+        ),
+        child: Stack(children: [
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(DishDetail.routeName);
+            },
+            child: Ink(
+              child: Column(
                 children: [
                   Container(
                     height: boxHeight * 0.53,
@@ -119,9 +119,14 @@ class Dish extends StatelessWidget {
                   ),
                 ],
               ),
-              Positioned(
-                  top: 6,
-                  right: 6,
+            ),
+          ),
+          Positioned(
+              top: 6,
+              right: 6,
+              child: InkWell(
+                onTap: () {},
+                child: Ink(
                   child: Container(
                     height: 28,
                     width: 28,
@@ -134,10 +139,10 @@ class Dish extends StatelessWidget {
                       size: AppDimensions.height16,
                       color: AppColors.secondaryColor,
                     ),
-                  ))
-            ]),
-          ),
-        ),
+                  ),
+                ),
+              ))
+        ]),
       ),
     );
   }

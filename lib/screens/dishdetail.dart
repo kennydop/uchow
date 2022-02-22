@@ -1,4 +1,6 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:u_chow/screens/cart.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
@@ -18,7 +20,7 @@ class DishDetail extends StatefulWidget {
 class _DishDetailState extends State<DishDetail> {
   var selectedTopings = [];
   int numberToOrder = 1;
-  var dish = dishes[2];
+  var dish = dishes[4];
   bool likeDish = false;
   bool addedToCart = false;
   var selectedPrice;
@@ -484,7 +486,10 @@ class _DishDetailState extends State<DishDetail> {
                                       blurRadius: 8,
                                       offset: const Offset(2, 3))
                                 ]),
-                            child: Icon(Icons.arrow_back,
+                            child: Icon(
+                                Platform.isAndroid
+                                    ? Icons.arrow_back
+                                    : Icons.arrow_back_ios_new,
                                 size: AppDimensions.height22,
                                 color: AppColors.primaryColor),
                           ),

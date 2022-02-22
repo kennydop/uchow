@@ -23,54 +23,49 @@ class _CartState extends State<Cart> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(children: [
-          Padding(
-            padding: EdgeInsets.only(
-                left: AppMargin.horizontal, top: AppMargin.vertical),
-            child: Row(children: [
-              BackButton(
+          Row(children: [
+            if (ModalRoute.of(context)!.canPop)
+              const BackButton(
                 color: AppColors.textColor,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              AppText(text: "Bag", size: AppDimensions.height18)
-            ]),
-          ),
+              )
+            else
+              SizedBox(width: AppMargin.horizontal),
+            AppText(text: "Bag", size: AppDimensions.height18)
+          ]),
           SizedBox(
-            height: AppDimensions.height16,
+            height: AppDimensions.height10,
           ),
-          InkWell(
-            onTap: () {
-              Navigator.of(context).pushNamed(DishDetail.routeName);
-            },
-            child: Ink(
-              child: Container(
-                height: AppDimensions.height100,
-                clipBehavior: Clip.antiAlias,
-                margin: EdgeInsets.symmetric(
-                    horizontal: AppMargin.horizontal,
-                    vertical: AppMargin.vertical),
-                padding: EdgeInsets.all(AppDimensions.height0p5),
-                decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(AppDimensions.height16),
-                    boxShadow: [
-                      BoxShadow(
-                          color: AppColors.secondaryColor.withOpacity(0.14),
-                          spreadRadius: 1,
-                          blurRadius: 6,
-                          offset: const Offset(1.6, 2.6))
-                    ]),
-                child: Container(
-                  padding: EdgeInsets.all(AppMargin.horizontal),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(AppDimensions.height16),
-                  ),
-                  child: Stack(
-                    children: [
-                      Row(
+          Container(
+            height: AppDimensions.height100,
+            clipBehavior: Clip.antiAlias,
+            margin: EdgeInsets.symmetric(
+                horizontal: AppMargin.horizontal, vertical: AppMargin.vertical),
+            padding: EdgeInsets.all(AppDimensions.height0p5),
+            decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                borderRadius: BorderRadius.circular(AppDimensions.height16),
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.secondaryColor.withOpacity(0.14),
+                      spreadRadius: 1,
+                      blurRadius: 6,
+                      offset: const Offset(1.6, 2.6))
+                ]),
+            child: Container(
+              padding: EdgeInsets.all(AppMargin.horizontal),
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(AppDimensions.height16),
+              ),
+              child: Stack(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(DishDetail.routeName);
+                    },
+                    child: Ink(
+                      child: Row(
                         children: [
                           Container(
                             width: AppDimensions.height80,
@@ -123,54 +118,65 @@ class _CartState extends State<Cart> {
                           )
                         ],
                       ),
-                      Positioned(
-                        right: 0,
-                        bottom: 0,
-                        child: Row(
-                          children: [
-                            InkWell(
-                                child: Ink(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: AppDimensions.width8),
-                                  child: AppText(
-                                      text: "-", size: AppDimensions.height22),
-                                ),
-                                onTap: () {}),
-                            SizedBox(
-                              width: AppDimensions.width3,
-                            ),
-                            Container(
-                              height: AppDimensions.height24,
-                              width: AppDimensions.height24,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                    AppDimensions.height3),
-                                border:
-                                    Border.all(color: AppColors.primaryColor),
-                              ),
-                              child: Center(
-                                child: AppText(
-                                  text: "6",
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: AppDimensions.width3,
-                            ),
-                            InkWell(
-                                child: Ink(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: AppDimensions.width8),
-                                  child: AppText(
-                                      text: "+", size: AppDimensions.height22),
-                                ),
-                                onTap: () {}),
-                          ],
-                        ),
-                      )
-                    ],
+                    ),
                   ),
-                ),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: Row(
+                      children: [
+                        InkWell(
+                            child: Ink(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: AppDimensions.width8),
+                              child: AppText(
+                                  text: "-", size: AppDimensions.height22),
+                            ),
+                            onTap: () {}),
+                        SizedBox(
+                          width: AppDimensions.width3,
+                        ),
+                        Container(
+                          height: AppDimensions.height24,
+                          width: AppDimensions.height24,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(AppDimensions.height3),
+                            border: Border.all(color: AppColors.primaryColor),
+                          ),
+                          child: Center(
+                            child: AppText(
+                              text: "6",
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: AppDimensions.width3,
+                        ),
+                        InkWell(
+                            child: Ink(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: AppDimensions.width8),
+                              child: AppText(
+                                  text: "+", size: AppDimensions.height22),
+                            ),
+                            onTap: () {}),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    right: 0,
+                    top: 0,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Ink(
+                        child: Icon(Icons.close,
+                            size: AppDimensions.height20,
+                            color: AppColors.primaryColor),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           )
