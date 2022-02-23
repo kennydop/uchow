@@ -541,6 +541,7 @@ class _DishDetailState extends State<DishDetail> {
                     addedToCart = true;
                     selectedTopings = [];
                   });
+                  Get.snackbar("UChow", "Added To Cart");
                 } else {
                   Get.toNamed("/bag");
                 }
