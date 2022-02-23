@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/screens/filter.dart';
-import 'package:u_chow/screens/profile.dart';
-import 'package:u_chow/screens/search.dart';
-import 'package:u_chow/utils/app_icons.dart';
+import 'package:get/get.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/widgets/dish/explore_dish.dart';
@@ -12,7 +9,6 @@ import 'package:u_chow/utils/dummydata.dart';
 
 class Explore extends StatefulWidget {
   const Explore({Key? key}) : super(key: key);
-  static const routeName = "/explore";
 
   @override
   _ExploreState createState() => _ExploreState();
@@ -46,8 +42,7 @@ class _ExploreState extends State<Explore> {
                             ]),
                             InkWell(
                               onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed(Profile.routeName);
+                                Get.toNamed("/profile");
                               },
                               child: Ink(
                                 child: CircleAvatar(
@@ -85,7 +80,7 @@ class _ExploreState extends State<Explore> {
                     border: Border.all(color: AppColors.primaryColor)),
                 child: InkWell(
                   onTap: () {
-                    Navigator.of(context).pushNamed(Search.routeName);
+                    Get.toNamed("/search");
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,9 +88,9 @@ class _ExploreState extends State<Explore> {
                       AppText(text: "Search", color: AppColors.subTextColor),
                       IconButton(
                           onPressed: () {
-                            Navigator.of(context).pushNamed(Filter.routeName);
+                            Get.toNamed("/filter");
                           },
-                          icon: Icon(Icons.tune_rounded,
+                          icon: const Icon(Icons.tune_rounded,
                               color: AppColors.primaryColor)),
                     ],
                   ),

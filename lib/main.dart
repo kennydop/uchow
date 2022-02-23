@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:u_chow/screens/bottom_navbar.dart';
 import 'package:u_chow/screens/bag.dart';
 import 'package:u_chow/screens/dishdetail.dart';
@@ -7,7 +8,7 @@ import 'package:u_chow/screens/favorites.dart';
 import 'package:u_chow/screens/filter.dart';
 import 'package:u_chow/screens/profile.dart';
 import 'package:u_chow/screens/search.dart';
-import 'package:u_chow/utils/colors.dart';
+import 'package:u_chow/screens/search_results.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,23 +19,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'UChow',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Raleway',
       ),
-      routes: {
-        BottomNavbar.routeName: (ctx) => const BottomNavbar(),
-        Explore.routeName: (ctx) => const Explore(),
-        DishDetail.routeName: (ctx) => const DishDetail(),
-        Bag.routeName: (ctx) => const Bag(),
-        Profile.routeName: (ctx) => const Profile(),
-        Favorites.routeName: (ctx) => const Favorites(),
-        Search.routeName: (ctx) => const Search(),
-        Filter.routeName: (ctx) => const Filter(),
-      },
-      home: const BottomNavbar(),
+      getPages: [
+        GetPage(name: "/", page: () => const BottomNavbar()),
+        GetPage(name: "/explore", page: () => const Explore()),
+        GetPage(name: "/dishdetail", page: () => const DishDetail()),
+        GetPage(name: "/bag", page: () => const Bag()),
+        GetPage(name: "/profile", page: () => const Profile()),
+        GetPage(name: "/favorites", page: () => const Favorites()),
+        GetPage(name: "/search", page: () => const Search()),
+        GetPage(name: "/filter", page: () => const Filter()),
+        GetPage(name: "/searchresults", page: () => const SearchResults()),
+      ],
+      initialRoute: "/",
     );
   }
 }

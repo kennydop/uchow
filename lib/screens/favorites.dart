@@ -8,7 +8,7 @@ import '../widgets/text.dart';
 
 class Favorites extends StatefulWidget {
   const Favorites({Key? key}) : super(key: key);
-  static const routeName = "/favorites";
+
   @override
   _FavoritesState createState() => _FavoritesState();
 }

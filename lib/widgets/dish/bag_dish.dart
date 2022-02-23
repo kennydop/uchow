@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:u_chow/utils/constants.dart';
 
-import '../../screens/dishdetail.dart';
 import '../../utils/colors.dart';
 import '../text.dart';
 
@@ -43,7 +42,7 @@ class _CartDishState extends State<CartDish> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed(DishDetail.routeName);
+                Get.toNamed("/dishdetail");
               },
               child: Ink(
                 child: Row(

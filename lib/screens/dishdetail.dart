@@ -1,7 +1,6 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:u_chow/screens/bag.dart';
+import 'package:get/get.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
@@ -11,7 +10,6 @@ import 'package:u_chow/widgets/text.dart';
 
 class DishDetail extends StatefulWidget {
   const DishDetail({Key? key}) : super(key: key);
-  static const routeName = "/dishdetail";
 
   @override
   State<DishDetail> createState() => _DishDetailState();
@@ -20,16 +18,14 @@ class DishDetail extends StatefulWidget {
 class _DishDetailState extends State<DishDetail> {
   var selectedTopings = [];
   int numberToOrder = 1;
-  var dish = dishes[4];
+  var dish = Get.arguments["dish"];
   bool likeDish = false;
   bool addedToCart = false;
   var selectedPrice;
+  var restaurant = Get.arguments["restaurant"];
 
   @override
   Widget build(BuildContext context) {
-    var restaurant = restaurants
-        .where((element) => element["uid"] == dish["restaurantID"])
-        .toList()[0];
     var topings = dish["topings"];
     var dishReviews =
         reviews.where((element) => element["dishID"] == dish["uid"]).toList();
@@ -109,10 +105,9 @@ class _DishDetailState extends State<DishDetail> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          if (addedToCart) {
+                                          if (selectedPrice != null &&
+                                              addedToCart) {
                                             addedToCart = false;
-                                          }
-                                          if (selectedPrice != null) {
                                             selectedPrice = null;
                                           }
                                           numberToOrder <= 1
@@ -151,11 +146,10 @@ class _DishDetailState extends State<DishDetail> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          if (addedToCart) {
-                                            addedToCart = false;
-                                          }
-                                          if (selectedPrice != null) {
+                                          if (selectedPrice != null &&
+                                              addedToCart) {
                                             selectedPrice = null;
+                                            addedToCart = false;
                                           }
                                           numberToOrder >= 15
                                               ? numberToOrder
@@ -201,7 +195,7 @@ class _DishDetailState extends State<DishDetail> {
                               margin: EdgeInsets.only(
                                   bottom: AppDimensions.height24),
                               child: AppText(text: "Added To Cart")),
-                        if (topings != null)
+                        if (topings != null && !addedToCart)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -365,9 +359,10 @@ class _DishDetailState extends State<DishDetail> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: AppDimensions.height32,
-                  ),
+                  if (!addedToCart)
+                    SizedBox(
+                      height: AppDimensions.height32,
+                    ),
                   Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: AppMargin.horizontal),
@@ -389,8 +384,9 @@ class _DishDetailState extends State<DishDetail> {
                                 itemCount: dishReviews.length,
                                 itemBuilder: (context, index) {
                                   var rev = dishReviews[index];
+                                  int stars = rev["stars"].round();
                                   List<Widget> _stars = List<Widget>.filled(
-                                      rev["stars"],
+                                      stars,
                                       Container(
                                           margin: EdgeInsets.only(
                                               right: AppDimensions.width3),
@@ -495,7 +491,7 @@ class _DishDetailState extends State<DishDetail> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.pop(context);
+                          Get.back();
                         },
                       ),
                       InkWell(
@@ -546,7 +542,7 @@ class _DishDetailState extends State<DishDetail> {
                     selectedTopings = [];
                   });
                 } else {
-                  Navigator.of(context).pushNamed(Bag.routeName);
+                  Get.toNamed("/bag");
                 }
               },
               child: Icon(addedToCart ? AppIcons.bag : Icons.add),

@@ -7,7 +7,6 @@ import 'package:u_chow/utils/colors.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({Key? key}) : super(key: key);
-  static const routeName = "/bnavbar";
 
   @override
   State<BottomNavbar> createState() => _BottomNavbarState();

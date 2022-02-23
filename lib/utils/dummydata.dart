@@ -62,7 +62,7 @@ List dishes = [
     "restaurantID": "432w65721e5r136e",
     "name": "Boiled Yam and Vegetable Stew",
     "price": ["16.00", "21.00"],
-    "rating": "4.4",
+    "rating": 4.00,
     "image": "assets/images/yam.jfif",
     "purchases": "6"
   },
@@ -72,7 +72,7 @@ List dishes = [
     "name": "Fried Rice with Chicken",
     "topings": ["Salad", "Salad Cream", "Tomato Sauce"],
     "price": ["9.00", "11.00", "16.00"],
-    "rating": "4.5",
+    "rating": 3.67,
     "image": "assets/images/fried_rice.jfif",
     "purchases": "8"
   },
@@ -82,7 +82,7 @@ List dishes = [
     "name": "Jollof Rice with Chicken",
     "topings": ["Salad", "Salad Cream", "Tomato Sauce"],
     "price": ["11.00", "14.00", "16.00", "21.00"],
-    "rating": "3.7",
+    "rating": 3.00,
     "image": "assets/images/jollof.jfif",
     "purchases": "7"
   },
@@ -91,8 +91,8 @@ List dishes = [
     "restaurantID": "432w65qw21e5r136e",
     "name": "Banku with Okro Stew",
     "price": ["9.00", "11.00", "14.00", "21.00"],
-    "rating": "4.8",
     "image": "assets/images/banku.jfif",
+    "rating": 4.00,
     "purchases": "8"
   },
   {
@@ -100,8 +100,8 @@ List dishes = [
     "restaurantID": "3t65g4gy34t525",
     "name": "Fried Ripe Plantain with Beans Stew",
     "price": ["6.00", "9.00", "11.00", "16.00"],
-    "rating": "4.9",
     "image": "assets/images/beans.jfif",
+    "rating": 4.67,
     "purchases": "24"
   },
   {
@@ -110,8 +110,8 @@ List dishes = [
     "name": "Waakye",
     "topings": ["Salad", "Salad Cream", "Tomato Sauce"],
     "price": ["9.00", "11.00", "14.00"],
-    "rating": "4.9",
     "image": "assets/images/waakye.jfif",
+    "rating": 4.40,
     "purchases": "16"
   },
 ];

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/widgets/text.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
-  static const routeName = "/profile";
 
   @override
   Widget build(BuildContext context) {

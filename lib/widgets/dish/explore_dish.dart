@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/screens/dishdetail.dart';
+import 'package:get/get.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
@@ -44,7 +44,10 @@ class ExploreDish extends StatelessWidget {
         child: Stack(children: [
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(DishDetail.routeName);
+              Get.toNamed("/dishdetail", arguments: {
+                "dish": dish,
+                "restaurant": restaurant,
+              });
             },
             child: Ink(
               child: Row(
@@ -100,7 +103,7 @@ class ExploreDish extends StatelessWidget {
                               ),
                               IconAndData(
                                 icon: AppIcons.star_1,
-                                text: dish["rating"],
+                                text: dish["rating"].toString(),
                                 iconSize: AppDimensions.height11,
                                 textSize: AppDimensions.height14,
                               ),

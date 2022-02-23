@@ -6,7 +6,6 @@ import 'package:u_chow/widgets/text.dart';
 
 class Bag extends StatelessWidget {
   const Bag({Key? key}) : super(key: key);
-  static const routeName = "/cart";
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/screens/filter.dart';
+import 'package:get/get.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/utils/constants.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
-  static const routeName = "/search";
 
   @override
   _SearchState createState() => _SearchState();
@@ -36,7 +34,7 @@ class _SearchState extends State<Search> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
           IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(Filter.routeName);
+                Get.toNamed("/filter");
               },
               icon: const Icon(Icons.tune_rounded)),
         ],
