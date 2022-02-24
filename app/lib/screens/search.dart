@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 
 class Search extends StatefulWidget {

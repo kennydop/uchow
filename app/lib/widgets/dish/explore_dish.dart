@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:u_chow/models/dish_model.dart';
+import 'package:u_chow/models/restaurant_model.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
@@ -7,18 +9,17 @@ import 'package:u_chow/widgets/iconanddata.dart';
 import 'package:u_chow/widgets/text.dart';
 
 class ExploreDish extends StatelessWidget {
-  final dish;
-  final restaurant_;
+  final DishModel dish;
+  final RestaurantModel restaurant;
 
   const ExploreDish({
     Key? key,
     required this.dish,
-    required this.restaurant_,
+    required this.restaurant,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final restaurant = restaurant_[0];
     return Container(
       height: AppDimensions.height120,
       clipBehavior: Clip.antiAlias,
@@ -63,7 +64,7 @@ class ExploreDish extends StatelessWidget {
                         borderRadius:
                             BorderRadius.circular(AppDimensions.height16),
                         image: DecorationImage(
-                          image: AssetImage(dish["image"]),
+                          image: AssetImage(dish.image),
                           fit: BoxFit.cover,
                         )),
                   ),
@@ -75,14 +76,14 @@ class ExploreDish extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AppText(
-                              text: dish["name"],
+                              text: dish.name,
                               type: 'title',
                               size: AppDimensions.height16),
                           SizedBox(
                             height: AppDimensions.height3,
                           ),
                           AppText(
-                            text: restaurant["name"],
+                            text: restaurant.name,
                             size: AppDimensions.height15,
                             color: AppColors.subTextColor,
                           ),
@@ -95,7 +96,7 @@ class ExploreDish extends StatelessWidget {
                             children: [
                               IconAndData(
                                 icon: AppIcons.clock,
-                                text: restaurant["diliveryTime"],
+                                text: restaurant.diliveryTime,
                                 textSize: AppDimensions.height14,
                               ),
                               SizedBox(
@@ -103,7 +104,7 @@ class ExploreDish extends StatelessWidget {
                               ),
                               IconAndData(
                                 icon: AppIcons.star_1,
-                                text: dish["rating"].toString(),
+                                text: dish.rating.toStringAsFixed(2),
                                 iconSize: AppDimensions.height11,
                                 textSize: AppDimensions.height14,
                               ),
@@ -118,7 +119,7 @@ class ExploreDish extends StatelessWidget {
                                   type: 'title',
                                   size: AppDimensions.height14),
                               AppText(
-                                  text: dish["price"][0],
+                                  text: dish.price[0].toStringAsFixed(2),
                                   type: 'title',
                                   size: AppDimensions.height18)
                             ],

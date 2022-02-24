@@ -1,119 +1,109 @@
-List restaurants = [
-  {
-    "uid": "432w65721e5r136e",
-    "name": "Heavenly Kitchen Fast Food",
-    "diliveryTime": "34mins",
-    "numberOfDishes": "3",
-    "tel": "0240893456",
-    "location": "Success City",
-    "profilePicture": ""
-  },
-  {
-    "uid": "3455tgg43545y25h",
-    "name": "Cheddar Fast Foods",
-    "diliveryTime": "14mins",
-    "numberOfDishes": "2",
-    "tel": "0240387341",
-    "location": "Ayensu Road",
-    "profilePicture": ""
-  },
-  {
-    "uid": "45yh4rh4y4yh64y4yh",
-    "name": "Tasty Chef Fast Foods",
-    "diliveryTime": "1hr",
-    "numberOfDishes": "3",
-    "tel": "0203456234",
-    "location": "Adehyiɛ Hall",
-    "profilePicture": ""
-  },
-  {
-    "uid": "432w65qw21e5r136e",
-    "name": "Daavi's Kitchen",
-    "diliveryTime": "23mins",
-    "numberOfDishes": "3",
-    "tel": "0550674353",
-    "location": "Apɛwosika",
-    "profilePicture": ""
-  },
-  {
-    "uid": "3t65g4gy34t525",
-    "name": "Gↄbɛ Wura",
-    "diliveryTime": "6mins",
-    "numberOfDishes": "1",
-    "tel": "0506724336",
-    "location": "Amamoma",
-    "profilePicture": ""
-  },
-  {
-    "uid": "53u5uy56uy35y246",
-    "name": "Amelia Waakye",
-    "diliveryTime": "13mins",
-    "numberOfDishes": "1",
-    "tel": "0240893456",
-    "location": "Science Market",
-    "profilePicture": ""
-  },
+import '../models/dish_model.dart';
+import '../models/restaurant_model.dart';
+
+List<RestaurantModel> restaurants = [
+  RestaurantModel(
+      uid: "432w65721e5r136e",
+      name: "Heavenly Kitchen Fast Food",
+      tel: "0240893456",
+      location: "Success City",
+      diliveryTime: "34 mins",
+      numberOfDishes: 3,
+      profilePicture: "assets/images/food0.png"),
+  RestaurantModel(
+      uid: "3455tgg43545y25h",
+      name: "Cheddar Fast Foods",
+      diliveryTime: "14mins",
+      numberOfDishes: 2,
+      tel: "0240387341",
+      location: "Ayensu Road",
+      profilePicture: ""),
+  RestaurantModel(
+      uid: "45yh4rh4y4yh64y4yh",
+      name: "Tasty Chef Fast Foods",
+      diliveryTime: "1hr",
+      numberOfDishes: 3,
+      tel: "0203456234",
+      location: "Adehyiɛ Hall",
+      profilePicture: ""),
+  RestaurantModel(
+      uid: "432w65qw21e5r136e",
+      name: "Daavi's Kitchen",
+      diliveryTime: "23mins",
+      numberOfDishes: 3,
+      tel: "0550674353",
+      location: "Apɛwosika",
+      profilePicture: ""),
+  RestaurantModel(
+      uid: "3t65g4gy34t525",
+      name: "Gↄbɛ Wura",
+      diliveryTime: "6mins",
+      numberOfDishes: 1,
+      tel: "0506724336",
+      location: "Amamoma",
+      profilePicture: ""),
+  RestaurantModel(
+      uid: "53u5uy56uy35y246",
+      name: "Amelia Waakye",
+      diliveryTime: "13mins",
+      numberOfDishes: 1,
+      tel: "0240893456",
+      location: "Science Market",
+      profilePicture: ""),
 ];
 
-List dishes = [
-  {
-    "uid": "1",
-    "dishID": "1",
-    "restaurantID": "432w65721e5r136e",
-    "name": "Boiled Yam and Vegetable Stew",
-    "price": ["16.00", "21.00"],
-    "rating": 4.00,
-    "image": "assets/images/yam.jfif",
-    "purchases": "6"
-  },
-  {
-    "uid": "2",
-    "restaurantID": "3455tgg43545y25h",
-    "name": "Fried Rice with Chicken",
-    "topings": ["Salad", "Salad Cream", "Tomato Sauce"],
-    "price": ["9.00", "11.00", "16.00"],
-    "rating": 3.67,
-    "image": "assets/images/fried_rice.jfif",
-    "purchases": "8"
-  },
-  {
-    "uid": "3",
-    "restaurantID": "45yh4rh4y4yh64y4yh",
-    "name": "Jollof Rice with Chicken",
-    "topings": ["Salad", "Salad Cream", "Tomato Sauce"],
-    "price": ["11.00", "14.00", "16.00", "21.00"],
-    "rating": 3.00,
-    "image": "assets/images/jollof.jfif",
-    "purchases": "7"
-  },
-  {
-    "uid": "4",
-    "restaurantID": "432w65qw21e5r136e",
-    "name": "Banku with Okro Stew",
-    "price": ["9.00", "11.00", "14.00", "21.00"],
-    "image": "assets/images/banku.jfif",
-    "rating": 4.00,
-    "purchases": "8"
-  },
-  {
-    "uid": "5",
-    "restaurantID": "3t65g4gy34t525",
-    "name": "Fried Ripe Plantain with Beans Stew",
-    "price": ["6.00", "9.00", "11.00", "16.00"],
-    "image": "assets/images/beans.jfif",
-    "rating": 4.67,
-    "purchases": "24"
-  },
-  {
-    "uid": "6",
-    "restaurantID": "53u5uy56uy35y246",
-    "name": "Waakye",
-    "topings": ["Salad", "Salad Cream", "Tomato Sauce"],
-    "price": ["9.00", "11.00", "14.00"],
-    "image": "assets/images/waakye.jfif",
-    "rating": 4.40,
-    "purchases": "16"
-  },
+List<DishModel> dishes = [
+  DishModel(
+      uid: "1",
+      restaurantID: "432w65721e5r136e",
+      name: "Boiled Yam and Vegetable Stew",
+      price: [16.00, 21.00],
+      rating: 4.00,
+      image: "assets/images/yam.jfif",
+      purchases: 6),
+  DishModel(
+      uid: "2",
+      restaurantID: "3455tgg43545y25h",
+      name: "Fried Rice with Chicken",
+      toppings: ["Salad", "Salad Cream", "Tomato Sauce"],
+      price: [9.00, 11.00, 16.00],
+      rating: 3.67,
+      image: "assets/images/fried_rice.jfif",
+      purchases: 8),
+  DishModel(
+      uid: "3",
+      restaurantID: "45yh4rh4y4yh64y4yh",
+      name: "Jollof Rice with Chicken",
+      toppings: ["Salad", "Salad Cream", "Tomato Sauce"],
+      price: [11.00, 14.00, 16.00, 21.00],
+      rating: 3.00,
+      image: "assets/images/jollof.jfif",
+      purchases: 7),
+  DishModel(
+      uid: "4",
+      restaurantID: "432w65qw21e5r136e",
+      name: "Banku with Okro Stew",
+      price: [9.00, 11.00, 14.00, 21.00],
+      image: "assets/images/banku.jfif",
+      rating: 4.00,
+      purchases: 8),
+  DishModel(
+      uid: "5",
+      restaurantID: "3t65g4gy34t525",
+      name: "Fried Ripe Plantain with Beans Stew",
+      price: [6.00, 9.00, 11.00, 16.00],
+      image: "assets/images/beans.jfif",
+      rating: 4.67,
+      purchases: 24),
+  DishModel(
+      uid: "6",
+      restaurantID: "53u5uy56uy35y246",
+      name: "Waakye",
+      toppings: ["Salad", "Salad Cream", "Tomato Sauce"],
+      price: [9.00, 11.00, 14.00],
+      image: "assets/images/waakye.jfif",
+      rating: 4.40,
+      purchases: 16),
 ];
 
 List reviews = [

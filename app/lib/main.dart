@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:u_chow/controllers/bag_controller.dart';
 import 'package:u_chow/screens/bottom_navbar.dart';
 import 'package:u_chow/screens/bag.dart';
 import 'package:u_chow/screens/dishdetail.dart';
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final BagController bagController = Get.put(BagController());
+
     return GetMaterialApp(
       title: 'UChow',
       debugShowCheckedModeBanner: false,

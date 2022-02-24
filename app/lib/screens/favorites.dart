@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:u_chow/models/restaurant_model.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/utils/dummydata.dart';
@@ -46,12 +47,10 @@ class _FavoritesState extends State<Favorites> {
                     itemBuilder: (context, index) {
                       var dish = dishes[index];
                       var restaurant = restaurants
-                          .where((element) =>
-                              element["uid"] == dish["restaurantID"])
-                          .toList();
+                          .where((element) => element.uid == dish.restaurantID);
                       return ExploreDish(
                         dish: dish,
-                        restaurant_: restaurant,
+                        restaurant: restaurant.single,
                       );
                     }),
               ),

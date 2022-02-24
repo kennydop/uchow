@@ -1,6 +1,10 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:u_chow/controllers/bag_controller.dart';
+import 'package:u_chow/models/dish_model.dart';
+import 'package:u_chow/models/order_info.dart';
+import 'package:u_chow/models/restaurant_model.dart';
 import 'package:u_chow/utils/app_icons.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
@@ -16,23 +20,31 @@ class DishDetail extends StatefulWidget {
 }
 
 class _DishDetailState extends State<DishDetail> {
-  var selectedTopings = [];
-  int numberToOrder = 1;
-  var dish = Get.arguments["dish"];
+  List<String> selectedToppings = Get.arguments["order"] == null
+      ? <String>[]
+      : Get.arguments["order"].selectedToppings;
+  int numberToOrder =
+      Get.arguments["order"] == null ? 1 : Get.arguments["order"].numberToOrder;
+  final DishModel dish = Get.arguments["order"] == null
+      ? Get.arguments["dish"]
+      : Get.arguments["order"].dish;
   bool likeDish = false;
-  bool addedToCart = false;
-  var selectedPrice;
-  var restaurant = Get.arguments["restaurant"];
+  var selectedPrice = Get.arguments["order"]?.selectedPrice;
+  final RestaurantModel restaurant = Get.arguments["order"] == null
+      ? Get.arguments["restaurant"]
+      : Get.arguments["order"].restaurant;
 
   @override
   Widget build(BuildContext context) {
-    var topings = dish["topings"];
+    final bagController = Get.find<BagController>();
+    bool addedToBag = bagController.alreadyInBag(
+        dish.uid, numberToOrder, selectedPrice ?? 0.00, selectedToppings);
+    List<String> toppings = dish.toppings;
     var dishReviews =
-        reviews.where((element) => element["dishID"] == dish["uid"]).toList();
+        reviews.where((element) => element["dishID"] == dish.uid).toList();
     double averageReview =
         dishReviews.map((r) => r['stars']!).reduce((a, b) => a + b) /
             dishReviews.length;
-
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SingleChildScrollView(
@@ -48,7 +60,7 @@ class _DishDetailState extends State<DishDetail> {
                 decoration: BoxDecoration(
                     color: AppColors.secondaryColor,
                     image: DecorationImage(
-                      image: AssetImage(dish["image"]),
+                      image: AssetImage(dish.image),
                       fit: BoxFit.cover,
                     )),
               ),
@@ -79,7 +91,7 @@ class _DishDetailState extends State<DishDetail> {
                                     SizedBox(
                                       width: logicalWidth * 0.68,
                                       child: AppText(
-                                        text: dish["name"],
+                                        text: dish.name,
                                         type: "title",
                                         size: AppDimensions.height20,
                                         ignoreOverflow: true,
@@ -89,7 +101,7 @@ class _DishDetailState extends State<DishDetail> {
                                     SizedBox(
                                       width: logicalWidth * 0.68,
                                       child: AppText(
-                                        text: restaurant["name"],
+                                        text: restaurant.name,
                                       ),
                                     )
                                   ]),
@@ -106,9 +118,9 @@ class _DishDetailState extends State<DishDetail> {
                                       onTap: () {
                                         setState(() {
                                           if (selectedPrice != null &&
-                                              addedToCart) {
-                                            addedToCart = false;
+                                              addedToBag) {
                                             selectedPrice = null;
+                                            selectedToppings = [];
                                           }
                                           numberToOrder <= 1
                                               ? numberToOrder
@@ -147,9 +159,9 @@ class _DishDetailState extends State<DishDetail> {
                                       onTap: () {
                                         setState(() {
                                           if (selectedPrice != null &&
-                                              addedToCart) {
+                                              addedToBag) {
                                             selectedPrice = null;
-                                            addedToCart = false;
+                                            selectedToppings = [];
                                           }
                                           numberToOrder >= 15
                                               ? numberToOrder
@@ -178,7 +190,7 @@ class _DishDetailState extends State<DishDetail> {
                               ),
                               IconAndData(
                                 icon: AppIcons.clock,
-                                text: restaurant["diliveryTime"],
+                                text: restaurant.diliveryTime,
                                 iconSize: AppDimensions.height16,
                                 textSize: AppDimensions.height16,
                               ),
@@ -188,27 +200,27 @@ class _DishDetailState extends State<DishDetail> {
                         SizedBox(
                           height: AppDimensions.height24,
                         ),
-                        if (addedToCart)
+                        if (addedToBag)
                           Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: AppDimensions.height16),
                               margin: EdgeInsets.only(
                                   bottom: AppDimensions.height24),
-                              child: AppText(text: "Added To Cart")),
-                        if (topings != null && !addedToCart)
+                              child: AppText(text: "Already in Bag")),
+                        if (toppings.isNotEmpty && !addedToBag)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: AppMargin.horizontal),
-                                child: AppText(text: "Add Topings"),
+                                child: AppText(text: "Add Toppings"),
                               ),
                               SizedBox(
                                 height: AppDimensions.height100,
                                 child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
-                                    itemCount: topings.length,
+                                    itemCount: toppings.length,
                                     itemBuilder: (context, index) {
                                       return Center(
                                         child: Stack(children: [
@@ -239,8 +251,8 @@ class _DishDetailState extends State<DishDetail> {
                                                           1.6, 2.6))
                                                 ],
                                                 image: DecorationImage(
-                                                    image: findTopingsImage(
-                                                        topings[index]),
+                                                    image: findToppingsImage(
+                                                        toppings[index]),
                                                     fit: BoxFit.cover)),
                                           ),
                                           Positioned(
@@ -249,21 +261,23 @@ class _DishDetailState extends State<DishDetail> {
                                               child: InkWell(
                                                 onTap: () {
                                                   setState(() {
-                                                    if (selectedTopings
-                                                        .contains(index)) {
-                                                      selectedTopings
-                                                          .remove(index);
+                                                    if (selectedToppings
+                                                        .contains(
+                                                            toppings[index])) {
+                                                      selectedToppings.remove(
+                                                          toppings[index]);
                                                     } else {
-                                                      selectedTopings
-                                                          .add(index);
+                                                      selectedToppings
+                                                          .add(toppings[index]);
                                                     }
                                                   });
                                                 },
                                                 child: Ink(
                                                   child: Icon(
                                                     AppIcons.plus_circled,
-                                                    color: selectedTopings
-                                                            .contains(index)
+                                                    color: selectedToppings
+                                                            .contains(
+                                                                toppings[index])
                                                         ? AppColors
                                                             .secondaryColor
                                                         : AppColors
@@ -280,7 +294,7 @@ class _DishDetailState extends State<DishDetail> {
                         SizedBox(
                           height: AppDimensions.height24,
                         ),
-                        if (!addedToCart)
+                        if (!addedToBag)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -298,9 +312,9 @@ class _DishDetailState extends State<DishDetail> {
                                 child: ListView.builder(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: dish["price"].length,
+                                  itemCount: dish.price.length,
                                   itemBuilder: (context, index) {
-                                    var price = dish["price"][index];
+                                    var price = dish.price[index];
                                     return InkWell(
                                       child: Ink(
                                         child: Container(
@@ -335,7 +349,8 @@ class _DishDetailState extends State<DishDetail> {
                                                       : AppColors.textColor,
                                                 ),
                                                 AppText(
-                                                  text: price,
+                                                  text:
+                                                      price.toStringAsFixed(2),
                                                   type: 'title',
                                                   size: AppDimensions.height20,
                                                   color: selectedPrice == price
@@ -359,7 +374,7 @@ class _DishDetailState extends State<DishDetail> {
                       ],
                     ),
                   ),
-                  if (!addedToCart)
+                  if (!addedToBag)
                     SizedBox(
                       height: AppDimensions.height32,
                     ),
@@ -432,7 +447,7 @@ class _DishDetailState extends State<DishDetail> {
                                               ),
                                               Row(
                                                 children: _stars,
-                                              )
+                                              ),
                                             ],
                                           ),
                                           SizedBox(
@@ -536,18 +551,23 @@ class _DishDetailState extends State<DishDetail> {
           ? const SizedBox.shrink()
           : FloatingActionButton(
               onPressed: () {
-                if (!addedToCart) {
+                if (!addedToBag) {
+                  bagController.addToBag(OrderInfo(
+                      dish: dish,
+                      restaurant: restaurant,
+                      numberToOrder: numberToOrder,
+                      selectedPrice: selectedPrice,
+                      selectedToppings: selectedToppings));
                   setState(() {
-                    addedToCart = true;
-                    selectedTopings = [];
+                    selectedToppings = [];
                   });
-                  Get.snackbar("UChow", "Added To Cart");
+                  Get.snackbar("Added to Bag", dish.name);
                 } else {
                   Get.toNamed("/bag");
                 }
               },
-              child: Icon(addedToCart ? AppIcons.bag : Icons.add),
-              backgroundColor: addedToCart
+              child: Icon(addedToBag ? AppIcons.bag : Icons.add),
+              backgroundColor: addedToBag
                   ? AppColors.secondaryColor
                   : AppColors.primaryColor,
             ),
@@ -555,24 +575,16 @@ class _DishDetailState extends State<DishDetail> {
     );
   }
 
-  AssetImage findTopingsImage(String name) {
+  AssetImage findToppingsImage(String name) {
     switch (name) {
       case "Salad":
         return const AssetImage("assets/images/food1.png");
-        break;
       case "Salad Cream":
         return const AssetImage("assets/images/food11.png");
-        break;
       case "Tomato Sauce":
         return const AssetImage("assets/images/food12.png");
-        break;
       default:
         return const AssetImage("assets/images/food13.png");
-        break;
     }
   }
-
-  // Widget generateStars(int num) {
-
-  // }
 }

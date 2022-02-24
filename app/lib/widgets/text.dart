@@ -5,10 +5,10 @@ class AppText extends StatelessWidget {
   final Color? color;
   final String? type;
   final String text;
-  double? size;
-  double? height;
-  bool? ignoreOverflow;
-  TextOverflow overflow;
+  final double? size;
+  final double? height;
+  final bool? ignoreOverflow;
+  final TextOverflow overflow;
 
   AppText(
       {Key? key,
@@ -34,7 +34,6 @@ class AppText extends StatelessWidget {
               fontWeight: FontWeight.w700,
               fontSize: size ?? AppDimensions.height24),
         );
-        break;
       case 'subtext':
         return Text(
           text,
@@ -46,7 +45,6 @@ class AppText extends StatelessWidget {
               fontWeight: FontWeight.w300,
               height: height ?? AppDimensions.height1p2),
         );
-        break;
       default:
         return Text(
           text,
@@ -56,7 +54,6 @@ class AppText extends StatelessWidget {
               color: color ?? const Color(0xFF707070),
               fontSize: size ?? AppDimensions.height16),
         );
-        break;
     }
   }
 }

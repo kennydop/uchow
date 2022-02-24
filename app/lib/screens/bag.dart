@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/controllers/bagController.dart';
+import 'package:u_chow/controllers/bag_controller.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/widgets/dish/bag_dish.dart';
@@ -11,7 +11,7 @@ class Bag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BagController bagController = Get.put(BagController());
+    final bagController = Get.find<BagController>();
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       body: SingleChildScrollView(
@@ -32,11 +32,20 @@ class Bag extends StatelessWidget {
             height: AppDimensions.height10,
           ),
           Obx(
-            () => ListView.builder(
-                itemCount: bagController.bag.length,
-                itemBuilder: (context, index) {
-                  return BagDish(orderInfo: bagController.bag[index]);
-                }),
+            () => bagController.bag.isNotEmpty
+                ? MediaQuery.removePadding(
+                    context: context,
+                    removeTop: true,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: bagController.bag.length,
+                        itemBuilder: (context, index) {
+                          return BagDish(index: index);
+                        }),
+                  )
+                : Container(
+                    margin: EdgeInsets.only(top: logicalHeight * 0.35),
+                    child: AppText(text: "Your Bag is Empty")),
           )
         ]),
       ),
