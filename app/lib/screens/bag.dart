@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:u_chow/controllers/bagController.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/widgets/dish/bag_dish.dart';
@@ -9,6 +11,7 @@ class Bag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final BagController bagController = Get.put(BagController());
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       body: SingleChildScrollView(
@@ -28,7 +31,13 @@ class Bag extends StatelessWidget {
           SizedBox(
             height: AppDimensions.height10,
           ),
-          const CartDish(),
+          Obx(
+            () => ListView.builder(
+                itemCount: bagController.bag.length,
+                itemBuilder: (context, index) {
+                  return BagDish(orderInfo: bagController.bag[index]);
+                }),
+          )
         ]),
       ),
     );

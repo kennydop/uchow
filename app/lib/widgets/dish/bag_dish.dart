@@ -5,14 +5,15 @@ import 'package:u_chow/utils/constants.dart';
 import '../../utils/colors.dart';
 import '../text.dart';
 
-class CartDish extends StatefulWidget {
-  const CartDish({Key? key}) : super(key: key);
+class BagDish extends StatefulWidget {
+  final orderInfo;
+  const BagDish({Key? key, required this.orderInfo}) : super(key: key);
 
   @override
-  _CartDishState createState() => _CartDishState();
+  _BagDishState createState() => _BagDishState();
 }
 
-class _CartDishState extends State<CartDish> {
+class _BagDishState extends State<BagDish> {
   @override
   Widget build(BuildContext context) {
     return Container(
