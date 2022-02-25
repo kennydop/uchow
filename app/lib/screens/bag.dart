@@ -37,6 +37,7 @@ class Bag extends StatelessWidget {
                     context: context,
                     removeTop: true,
                     child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: bagController.bag.length,
                         itemBuilder: (context, index) {

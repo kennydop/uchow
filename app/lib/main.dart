@@ -10,13 +10,15 @@ import 'package:u_chow/screens/filter.dart';
 import 'package:u_chow/screens/profile.dart';
 import 'package:u_chow/screens/search.dart';
 import 'package:u_chow/screens/search_results.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await GetStorage.init();
+  runApp(const UChow());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class UChow extends StatelessWidget {
+  const UChow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
