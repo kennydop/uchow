@@ -563,7 +563,15 @@ class _DishDetailState extends State<DishDetail> {
                   });
                   Get.snackbar("Added to Bag", dish.name);
                 } else {
-                  Get.toNamed("/bag");
+                  Get.toNamed("/bag")?.then((_) {
+                    setState(() {
+                      if (bagController.alreadyInBag(dish.uid, numberToOrder,
+                              selectedPrice ?? 0.00, selectedToppings) ==
+                          false) {
+                        selectedPrice = null;
+                      }
+                    });
+                  });
                 }
               },
               child: Icon(addedToBag ? AppIcons.bag : Icons.add),

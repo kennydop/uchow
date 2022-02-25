@@ -33,7 +33,7 @@ class _SearchState extends State<Search> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
           IconButton(
               onPressed: () {
-                Get.toNamed("/filter");
+                Get.toNamed("/search/filter");
               },
               icon: const Icon(Icons.tune_rounded)),
         ],

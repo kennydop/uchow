@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/models/restaurant_model.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/widgets/dish/explore_dish.dart';
@@ -89,7 +88,7 @@ class _ExploreState extends State<Explore> {
                       AppText(text: "Search", color: AppColors.subTextColor),
                       IconButton(
                           onPressed: () {
-                            Get.toNamed("/filter");
+                            Get.toNamed("/search/filter");
                           },
                           icon: const Icon(Icons.tune_rounded,
                               color: AppColors.primaryColor)),

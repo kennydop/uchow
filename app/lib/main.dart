@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/profile", page: () => const Profile()),
         GetPage(name: "/favorites", page: () => const Favorites()),
         GetPage(name: "/search", page: () => const Search()),
-        GetPage(name: "/filter", page: () => const Filter()),
-        GetPage(name: "/searchresults", page: () => const SearchResults()),
+        GetPage(name: "/search/filter", page: () => const Filter()),
+        GetPage(name: "/search/results", page: () => const SearchResults()),
       ],
       initialRoute: "/",
     );
