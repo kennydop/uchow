@@ -63,7 +63,7 @@ class BagDish extends StatelessWidget {
                               )),
                         ),
                         SizedBox(
-                          width: AppDimensions.width16,
+                          width: AppDimensions.width10,
                         ),
                         Expanded(
                           child: Column(

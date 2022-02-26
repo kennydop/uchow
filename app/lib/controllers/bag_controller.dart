@@ -46,6 +46,14 @@ class BagController extends GetxController {
         -1;
   }
 
+  double calculateSubTotal() {
+    double total = 0.00;
+    bag.forEach((element) {
+      total += (element.selectedPrice * element.numberToOrder);
+    });
+    return total;
+  }
+
   _toJson() {
     List jsonObj = [];
     bag.forEach((element) {
@@ -72,6 +80,7 @@ class BagController extends GetxController {
         "toppings": order.dish.toppings,
         "rating": order.dish.rating,
         "image": order.dish.image,
+        "description": order.dish.description,
         "purchases": order.dish.purchases,
       },
       "restaurant": {
@@ -97,6 +106,10 @@ class BagController extends GetxController {
           name: order["dish"]["name"],
           price: order["dish"]["price"].cast<double>(),
           image: order["dish"]["image"],
+          description: order["dish"]["description"],
+          purchases: order["dish"]["purchases"],
+          rating: order["dish"]["rating"],
+          toppings: order["dish"]["toppings"].cast<String>(),
         ),
         restaurant: RestaurantModel(
             uid: order["dish"]["uid"],

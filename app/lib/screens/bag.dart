@@ -11,6 +11,26 @@ class Bag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List paymentOptions = [
+      {
+        "image":
+            "https://www.newsghana.com.gh/wp-content/uploads/2017/05/telecom-mobile-money.jpg",
+        "name": "Mobile Money",
+        "available": true
+      },
+      {
+        "image":
+            "https://www.nicepng.com/png/full/87-870350_credit-cards-all-credit-card-logos.png",
+        "name": "Credit Card",
+        "available": true
+      },
+      {
+        "image":
+            "https://www.shareicon.net/data/2016/07/16/796809_logo_512x512.png",
+        "name": "PayPal",
+        "available": true
+      },
+    ];
     final bagController = Get.find<BagController>();
     return Scaffold(
       backgroundColor: AppColors.bgColor,
@@ -47,9 +67,117 @@ class Bag extends StatelessWidget {
                 : Container(
                     margin: EdgeInsets.only(top: logicalHeight * 0.35),
                     child: AppText(text: "Your Bag is Empty")),
-          )
+          ),
+          SizedBox(
+            height: AppDimensions.height18,
+          ),
         ]),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.bottomSheet(BottomSheet(
+              onClosing: () {},
+              backgroundColor: AppColors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(AppDimensions.height16))),
+              builder: (context) {
+                return Container(
+                  padding: EdgeInsets.all(AppMargin.vertical),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppText(
+                          text: "Check Out",
+                          type: 'title',
+                          size: AppDimensions.height16),
+                      SizedBox(height: AppMargin.vertical),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppText(text: "Subtotal:"),
+                            AppText(
+                                text: bagController
+                                    .calculateSubTotal()
+                                    .toStringAsFixed(2)),
+                          ]),
+                      SizedBox(height: AppDimensions.height6),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppText(text: "Dilivery:"),
+                            AppText(text: "Free"),
+                          ]),
+                      SizedBox(height: AppDimensions.height6),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppText(text: "Total:"),
+                          AppText(
+                              text: bagController
+                                  .calculateSubTotal()
+                                  .toStringAsFixed(2)),
+                        ],
+                      ),
+                      SizedBox(
+                        height: AppDimensions.height16,
+                      ),
+                      AppText(
+                          text: "Pay With:",
+                          type: 'title',
+                          size: AppDimensions.height16),
+                      SizedBox(height: AppMargin.vertical),
+                      MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
+                        removeBottom: true,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: paymentOptions.length,
+                            itemBuilder: ((context, index) {
+                              if (paymentOptions[index]["available"] == true) {
+                                return TextButton(
+                                    onPressed: () {},
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.network(
+                                            paymentOptions[index]["image"],
+                                            height: AppDimensions.height20,
+                                            fit: BoxFit.contain),
+                                        SizedBox(
+                                          width: AppMargin.horizontal,
+                                        ),
+                                        AppText(
+                                          text: paymentOptions[index]["name"],
+                                          color: AppColors.white,
+                                        ),
+                                      ],
+                                    ),
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: AppColors.primaryColor,
+                                      minimumSize: Size(
+                                          logicalWidth -
+                                              (AppMargin.horizontal * 2),
+                                          AppDimensions.height38),
+                                    ));
+                              } else {
+                                return const SizedBox.shrink();
+                              }
+                            })),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ));
+          },
+          backgroundColor: AppColors.secondaryColor,
+          child: const Icon(Icons.shopping_cart_checkout_rounded),
+          splashColor: AppColors.primaryColor),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

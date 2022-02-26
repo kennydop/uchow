@@ -7,15 +7,17 @@ class DishModel {
     this.toppings = const <String>[],
     this.rating = 0.00,
     required this.image,
+    this.description = "",
     this.purchases = 0,
   });
 
-  var uid;
-  var restaurantID;
+  String uid;
+  String restaurantID;
   String name;
   List<double> price;
   List<String> toppings;
   double rating;
   String image;
+  String description;
   int purchases;
 }

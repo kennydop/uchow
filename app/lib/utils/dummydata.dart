@@ -60,6 +60,8 @@ List<DishModel> dishes = [
       price: [16.00, 21.00],
       rating: 4.00,
       image: "assets/images/yam.jfif",
+      description:
+          "Video provides a powerful way to help you prove your point. When you click Online Video, you can paste in the embed code for the video you want to add. You can also type a keyword to search online for the video that best fits your document.",
       purchases: 6),
   DishModel(
       uid: "2",
@@ -69,6 +71,8 @@ List<DishModel> dishes = [
       price: [9.00, 11.00, 16.00],
       rating: 3.67,
       image: "assets/images/fried_rice.jfif",
+      description:
+          "Save time in Word with new buttons that show up where you need them. To change the way a picture fits in your document, click it and a button for layout options appears next to it. When you work on a table, click where you want to add a row or a column, and then click the plus sign.",
       purchases: 8),
   DishModel(
       uid: "3",
@@ -85,6 +89,8 @@ List<DishModel> dishes = [
       name: "Banku with Okro Stew",
       price: [9.00, 11.00, 14.00, 21.00],
       image: "assets/images/banku.jfif",
+      description:
+          "Save time in Word with new buttons that show up where you need them. To change the way a picture fits in your document, click it and a button for layout options appears next to it. When you work on a table, click where you want to add a row or a column, and then click the plus sign.",
       rating: 4.00,
       purchases: 8),
   DishModel(
@@ -102,6 +108,8 @@ List<DishModel> dishes = [
       toppings: ["Salad", "Salad Cream", "Tomato Sauce"],
       price: [9.00, 11.00, 14.00],
       image: "assets/images/waakye.jfif",
+      description:
+          "Video provides a powerful way to help you prove your point. When you click Online Video, you can paste in the embed code for the video you want to add. You can also type a keyword to search online for the video that best fits your document.",
       rating: 4.40,
       purchases: 16),
 ];

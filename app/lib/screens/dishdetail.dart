@@ -214,7 +214,10 @@ class _DishDetailState extends State<DishDetail> {
                               Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: AppMargin.horizontal),
-                                child: AppText(text: "Add Toppings"),
+                                child: AppText(
+                                    text: "Add Toppings:",
+                                    type: "title",
+                                    size: AppDimensions.height16),
                               ),
                               SizedBox(
                                 height: AppDimensions.height100,
@@ -301,7 +304,10 @@ class _DishDetailState extends State<DishDetail> {
                               Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: AppMargin.horizontal),
-                                child: AppText(text: "Select Price"),
+                                child: AppText(
+                                    text: "Select Price:",
+                                    type: "title",
+                                    size: AppDimensions.height16),
                               ),
                               SizedBox(
                                 height: AppDimensions.height10,
@@ -378,94 +384,117 @@ class _DishDetailState extends State<DishDetail> {
                     SizedBox(
                       height: AppDimensions.height32,
                     ),
-                  Container(
+                  if (dish.description.trim().isNotEmpty)
+                    Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: AppMargin.horizontal),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AppText(
-                            text: "Reviews (" +
-                                dishReviews.length.toString() +
-                                ")",
+                              text: "Description:",
+                              type: "title",
+                              size: AppDimensions.height16),
+                          AppText(
+                            text: dish.description,
+                            ignoreOverflow: true,
                           ),
-                          SizedBox(height: AppDimensions.height10),
-                          MediaQuery.removePadding(
-                            context: context,
-                            removeTop: true,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: dishReviews.length,
-                                itemBuilder: (context, index) {
-                                  var rev = dishReviews[index];
-                                  int stars = rev["stars"].round();
-                                  List<Widget> _stars = List<Widget>.filled(
-                                      stars,
-                                      Container(
-                                          margin: EdgeInsets.only(
-                                              right: AppDimensions.width3),
-                                          child: Icon(
-                                            AppIcons.star_1,
-                                            color: AppColors.secondaryColor,
-                                            size: AppDimensions.height12,
-                                          )));
-                                  if (rev["review"] != "") {
-                                    return Container(
-                                      margin: EdgeInsets.only(
-                                          bottom: AppDimensions.height20),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              CircleAvatar(
-                                                minRadius:
-                                                    AppDimensions.height16,
-                                                maxRadius:
-                                                    AppDimensions.height16,
-                                                backgroundImage: const AssetImage(
-                                                    "assets/images/pass.jpg"),
-                                                backgroundColor:
-                                                    AppColors.secondaryColor,
-                                              ),
-                                              SizedBox(
-                                                width: AppDimensions.width11,
-                                              ),
-                                              AppText(
-                                                text: rev["name"].length > 24
-                                                    ? rev["name"]
-                                                            .substring(0, 21) +
-                                                        "..."
-                                                    : rev["name"],
-                                                type: "title",
-                                                size: AppDimensions.height16,
-                                              ),
-                                              SizedBox(
-                                                width: AppDimensions.width20,
-                                              ),
-                                              Row(
-                                                children: _stars,
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                              height: AppDimensions.height3),
-                                          AppText(
-                                            text: rev["review"],
-                                            ignoreOverflow: true,
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  } else {
-                                    return Container();
-                                  }
-                                }),
-                          )
                         ],
-                      ))
+                      ),
+                    ),
+                  SizedBox(
+                    height: AppDimensions.height32,
+                  ),
+                  if (dishReviews.isNotEmpty)
+                    Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppMargin.horizontal),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppText(
+                                text: "Reviews (" +
+                                    dishReviews.length.toString() +
+                                    "):",
+                                type: "title",
+                                size: AppDimensions.height16),
+                            SizedBox(height: AppDimensions.height10),
+                            MediaQuery.removePadding(
+                              context: context,
+                              removeTop: true,
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: dishReviews.length,
+                                  itemBuilder: (context, index) {
+                                    var rev = dishReviews[index];
+                                    int stars = rev["stars"].round();
+                                    List<Widget> _stars = List<Widget>.filled(
+                                        stars,
+                                        Container(
+                                            margin: EdgeInsets.only(
+                                                right: AppDimensions.width3),
+                                            child: Icon(
+                                              AppIcons.star_1,
+                                              color: AppColors.secondaryColor,
+                                              size: AppDimensions.height12,
+                                            )));
+                                    if (rev["review"] != "") {
+                                      return Container(
+                                        margin: EdgeInsets.only(
+                                            bottom: AppDimensions.height20),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                CircleAvatar(
+                                                  minRadius:
+                                                      AppDimensions.height16,
+                                                  maxRadius:
+                                                      AppDimensions.height16,
+                                                  backgroundImage: const AssetImage(
+                                                      "assets/images/pass.jpg"),
+                                                  backgroundColor:
+                                                      AppColors.secondaryColor,
+                                                ),
+                                                SizedBox(
+                                                  width: AppDimensions.width11,
+                                                ),
+                                                AppText(
+                                                  text: rev["name"].length > 24
+                                                      ? rev["name"].substring(
+                                                              0, 21) +
+                                                          "..."
+                                                      : rev["name"],
+                                                  type: "title",
+                                                  size: AppDimensions.height16,
+                                                ),
+                                                SizedBox(
+                                                  width: AppDimensions.width20,
+                                                ),
+                                                Row(
+                                                  children: _stars,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                                height: AppDimensions.height3),
+                                            AppText(
+                                              text: rev["review"],
+                                              ignoreOverflow: true,
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    } else {
+                                      return Container();
+                                    }
+                                  }),
+                            )
+                          ],
+                        ))
                 ],
               ),
             ),
@@ -578,6 +607,9 @@ class _DishDetailState extends State<DishDetail> {
               backgroundColor: addedToBag
                   ? AppColors.secondaryColor
                   : AppColors.primaryColor,
+              splashColor: addedToBag
+                  ? AppColors.primaryColor
+                  : AppColors.secondaryColor,
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
