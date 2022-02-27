@@ -14,7 +14,7 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.bgColor,
+        backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: AppColors.textColor),
         elevation: 0.5,
         title: const TextField(

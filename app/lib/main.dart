@@ -45,7 +45,7 @@ class UChow extends StatelessWidget {
         GetPage(name: "/search/filter", page: () => const Filter()),
         GetPage(name: "/search/results", page: () => const SearchResults()),
         GetPage(name: "/signin", page: () => const SignIn()),
-        GetPage(name: "/signup", page: () => const SignUp()),
+        GetPage(name: "/signup", page: () => const SingUp()),
       ],
       initialRoute: "/signin",
     );
