@@ -46,7 +46,6 @@ class _DishDetailState extends State<DishDetail> {
         dishReviews.map((r) => r['stars']!).reduce((a, b) => a + b) /
             dishReviews.length;
     return Scaffold(
-      backgroundColor: AppColors.white,
       body: SingleChildScrollView(
         child: Stack(
           children: [

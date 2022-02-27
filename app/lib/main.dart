@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:u_chow/controllers/bag_controller.dart';
+import 'package:u_chow/screens/auth/signin.dart';
+import 'package:u_chow/screens/auth/singup.dart';
 import 'package:u_chow/screens/bottom_navbar.dart';
 import 'package:u_chow/screens/bag.dart';
 import 'package:u_chow/screens/dishdetail.dart';
 import 'package:u_chow/screens/explore.dart';
 import 'package:u_chow/screens/favorites.dart';
-import 'package:u_chow/screens/filter.dart';
+import 'package:u_chow/screens/search/filter.dart';
 import 'package:u_chow/screens/profile.dart';
-import 'package:u_chow/screens/search.dart';
-import 'package:u_chow/screens/search_results.dart';
+import 'package:u_chow/screens/search/search.dart';
+import 'package:u_chow/screens/search/search_results.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:u_chow/utils/colors.dart';
 
 void main() async {
   await GetStorage.init();
@@ -28,6 +31,7 @@ class UChow extends StatelessWidget {
       title: 'UChow',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.bgColor,
         fontFamily: 'Raleway',
       ),
       getPages: [
@@ -40,8 +44,10 @@ class UChow extends StatelessWidget {
         GetPage(name: "/search", page: () => const Search()),
         GetPage(name: "/search/filter", page: () => const Filter()),
         GetPage(name: "/search/results", page: () => const SearchResults()),
+        GetPage(name: "/signin", page: () => const SignIn()),
+        GetPage(name: "/signup", page: () => const SignUp()),
       ],
-      initialRoute: "/",
+      initialRoute: "/signin",
     );
   }
 }

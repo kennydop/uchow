@@ -50,6 +50,9 @@ class AppDimensions {
   static double height32 = logicalHeight / 20; //32
   static double height38 = logicalHeight / 16.8422; //38
   static double height40 = logicalHeight / 16; //40
+  static double height44 = logicalHeight / 14.545455; //44
+  static double height45 = logicalHeight / 14.222223; //45
+  static double height46 = logicalHeight / 13.9131; //46
   static double height48 = logicalHeight / 13.333334; //48
   static double height52 = logicalHeight / 12.307; //52
   static double height80 = logicalHeight / 8; //80

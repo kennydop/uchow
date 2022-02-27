@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/models/restaurant_model.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
 import 'package:u_chow/utils/dummydata.dart';
@@ -18,7 +17,6 @@ class _FavoritesState extends State<Favorites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
       body: SingleChildScrollView(
           padding: EdgeInsets.only(top: AppDimensions.height22),
           child: Column(

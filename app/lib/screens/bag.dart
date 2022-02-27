@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:u_chow/controllers/bag_controller.dart';
 import 'package:u_chow/utils/colors.dart';
 import 'package:u_chow/utils/constants.dart';
+import 'package:u_chow/widgets/AppTextButton.dart';
 import 'package:u_chow/widgets/dish/bag_dish.dart';
 import 'package:u_chow/widgets/text.dart';
 
@@ -33,7 +34,6 @@ class Bag extends StatelessWidget {
     ];
     final bagController = Get.find<BagController>();
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: AppDimensions.height22),
         child: Column(children: [
@@ -137,32 +137,11 @@ class Bag extends StatelessWidget {
                             itemCount: paymentOptions.length,
                             itemBuilder: ((context, index) {
                               if (paymentOptions[index]["available"] == true) {
-                                return TextButton(
-                                    onPressed: () {},
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.network(
-                                            paymentOptions[index]["image"],
-                                            height: AppDimensions.height20,
-                                            fit: BoxFit.contain),
-                                        SizedBox(
-                                          width: AppMargin.horizontal,
-                                        ),
-                                        AppText(
-                                          text: paymentOptions[index]["name"],
-                                          color: AppColors.white,
-                                        ),
-                                      ],
-                                    ),
-                                    style: TextButton.styleFrom(
-                                      backgroundColor: AppColors.primaryColor,
-                                      minimumSize: Size(
-                                          logicalWidth -
-                                              (AppMargin.horizontal * 2),
-                                          AppDimensions.height38),
-                                    ));
+                                return AppTextButtonWithIcon(
+                                  onPressed: () {},
+                                  text: paymentOptions[index]["name"],
+                                  image: paymentOptions[index]["image"],
+                                );
                               } else {
                                 return const SizedBox.shrink();
                               }
