@@ -65,7 +65,7 @@ class _SignInState extends State<SignIn> {
                       _email = value.toString();
                     },
                   ),
-                  SizedBox(height: AppDimensions.height20),
+                  SizedBox(height: AppDimensions.height14),
                   TextFormField(
                     obscureText: !showPassword,
                     decoration: InputDecoration(
@@ -109,7 +109,7 @@ class _SignInState extends State<SignIn> {
                       _password = value.toString();
                     },
                   ),
-                  SizedBox(height: AppDimensions.height20),
+                  SizedBox(height: AppDimensions.height14),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -129,7 +129,7 @@ class _SignInState extends State<SignIn> {
                       )
                     ],
                   ),
-                  SizedBox(height: AppDimensions.height20),
+                  SizedBox(height: AppDimensions.height14),
                   AppTextButton(
                     onPressed: () {
                       if (!_formKey.currentState!.validate()) {
@@ -142,6 +142,27 @@ class _SignInState extends State<SignIn> {
                     },
                     text: "Sign In",
                   ),
+                  SizedBox(height: AppDimensions.height14),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                          height: AppDimensions.height0p5,
+                          width: logicalWidth * .4,
+                          color: AppColors.primaryBlackColor),
+                      AppText(text: "Or"),
+                      Container(
+                          height: AppDimensions.height0p5,
+                          width: logicalWidth * .4,
+                          color: AppColors.primaryBlackColor)
+                    ],
+                  ),
+                  SizedBox(height: AppDimensions.height14),
+                  AppTextButtonWithIcon(
+                      onPressed: () {},
+                      image:
+                          "https://hackaday.com/wp-content/uploads/2016/08/google-g-logo.png?resize=50",
+                      text: "Continue with Google")
                 ],
               )),
         ),
