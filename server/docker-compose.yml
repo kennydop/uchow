@@ -6,16 +6,20 @@ services:
       - 5000:5000
     env_file: .env
     depends_on: 
-      - db
-  db:
-    container_name: db
+      - postgres
+    volumes:
+      - ./:/app/
+      - /app/node_modules
+  postgres:
     image: postgres:14.2-alpine
     restart: always
     environment:
-      POSTGRES_USER: root
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: db
-      PGHOST: db
+      POSTGRES_DB: uchow
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports: 
-      - 8080:5432
+      - 5432:5432
+    volumes:
+      - ./database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
   

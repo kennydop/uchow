@@ -7,6 +7,7 @@ COPY package*.json ./
 COPY . .
 
 RUN npm install
+RUN npm install -g ts-node
 # RUN npm ci --only=production
 
 # RUN npm build # for production
