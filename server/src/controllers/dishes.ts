@@ -13,7 +13,7 @@ export const getAllDishes = async (
         return payload.rows;
       })
       .catch((error) => {
-        throw Error(error);
+        throw new Error(error);
       });
     return res.status(200).json(dishes);
   } catch (error) {
@@ -30,10 +30,10 @@ export const getADish = async (
     const dishes = await db
       .query("SELECT * FROM dishes WHERE id=$1", [req.params.id])
       .then((payload) => {
-        return payload.rows;
+        return payload.rows[0];
       })
       .catch((error) => {
-        throw Error(error);
+        throw new Error(error);
       });
     return res.status(200).json(dishes);
   } catch (error) {
@@ -54,10 +54,10 @@ export const addDish = async (
         [restaurant_id, name, price, toppings, image, description]
       )
       .then((payload) => {
-        return payload.rows;
+        return payload.rows[0];
       })
       .catch((error) => {
-        console.error(error);
+        throw new Error(error);
       });
     return res.status(200).json(newDish);
   } catch (error) {
@@ -80,7 +80,7 @@ export const getPopularDishes = async (
         return payload.rows;
       })
       .catch((error) => {
-        throw Error(error);
+        throw new Error(error);
       });
     console.log(popular);
     return res.status(200).json(popular);

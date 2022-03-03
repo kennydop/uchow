@@ -3,7 +3,12 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
-import { usersRouter, restaurantsRouter, dishesRouter } from "./src/routes";
+import {
+  usersRouter,
+  restaurantsRouter,
+  dishesRouter,
+  reviewsRouter,
+} from "./src/routes";
 
 if (process.env.NODE_ENV !== "production") {
   // Load environment variables from .env file in non prod environments
@@ -29,6 +34,7 @@ app.use(cors(corsOptions));
 app.use("/api/users", usersRouter);
 app.use("/api/restaurants", restaurantsRouter);
 app.use("/api/dishes", dishesRouter);
+app.use("/api/reviews", reviewsRouter);
 
 //listen
 try {

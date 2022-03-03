@@ -13,7 +13,7 @@ export const getAllRetaurants = async (
         return payload.rows;
       })
       .catch((error) => {
-        throw Error(error);
+        throw new Error(error);
       });
     return res.status(200).json(restaurants);
   } catch (error) {
@@ -33,7 +33,7 @@ export const getARetaurant = async (
         return payload.rows;
       })
       .catch((error) => {
-        throw Error(error);
+        throw new Error(error);
       });
     return res.status(200).json(restaurants);
   } catch (error) {
@@ -57,7 +57,7 @@ export const addResturant = async (
         return payload.rows;
       })
       .catch((error) => {
-        throw Error(error);
+        throw new Error(error);
       });
     return res.status(200).json(restaurants);
   } catch (error) {

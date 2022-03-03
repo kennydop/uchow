@@ -39,7 +39,8 @@ CREATE TABLE dishes (
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
   user_id INT NOT NULL REFERENCES users(id),
-  rating FLOAT(2) NOT NULL,
+  dish_id INT NOT NULL REFERENCES dishes(id),
+  rating INT NOT NULL,
   message TEXT NOT NULL
 );
 
