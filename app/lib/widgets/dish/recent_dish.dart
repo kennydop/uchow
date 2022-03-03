@@ -92,15 +92,13 @@ class RecentDish extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            IconAndData(
-                                icon: AppIcons.clock,
-                                text: restaurant.diliveryTime),
+                            IconAndData(icon: AppIcons.clock, text: "30mins"),
                             SizedBox(
                               width: AppDimensions.width10,
                             ),
                             IconAndData(
                                 icon: AppIcons.star_1,
-                                text: dish.rating.toStringAsFixed(2),
+                                text: "3.76",
                                 iconSize: AppDimensions.height11),
                           ],
                         ),

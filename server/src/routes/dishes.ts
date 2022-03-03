@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { getAllDishes } from "src/controllers";
+import { getAllDishes } from "../controllers";
 
 const router = Router();
 
-router.get("/dishes", getAllDishes);
+router.get("/", getAllDishes);
 export default router;

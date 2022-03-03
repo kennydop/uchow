@@ -35,7 +35,7 @@ class BagController extends GetxController {
     bag.refresh();
   }
 
-  alreadyInBag(String uid, int numberToOrder, double selectedPrice,
+  alreadyInBag(int uid, int numberToOrder, double selectedPrice,
       List<String> selectedToppings) {
     return bag.indexWhere((element) =>
             element.dish.uid == uid &&
@@ -78,7 +78,6 @@ class BagController extends GetxController {
         "name": order.dish.name,
         "price": order.dish.price,
         "toppings": order.dish.toppings,
-        "rating": order.dish.rating,
         "image": order.dish.image,
         "description": order.dish.description,
         "purchases": order.dish.purchases,
@@ -86,8 +85,6 @@ class BagController extends GetxController {
       "restaurant": {
         "uid": order.restaurant.uid,
         "name": order.restaurant.name,
-        "diliveryTime": order.restaurant.diliveryTime,
-        "numberOfDishes": order.restaurant.numberOfDishes,
         "tel": order.restaurant.tel,
         "location": order.restaurant.location,
         "profilePicture": order.restaurant.profilePicture,
@@ -108,16 +105,13 @@ class BagController extends GetxController {
           image: order["dish"]["image"],
           description: order["dish"]["description"],
           purchases: order["dish"]["purchases"],
-          rating: order["dish"]["rating"],
           toppings: order["dish"]["toppings"].cast<String>(),
         ),
         restaurant: RestaurantModel(
             uid: order["dish"]["uid"],
             name: order["restaurant"]["name"],
             tel: order["restaurant"]["tel"],
-            diliveryTime: order["restaurant"]["diliveryTime"],
             location: order["restaurant"]["location"],
-            numberOfDishes: order["restaurant"]["numberOfDishes"],
             profilePicture: order["restaurant"]["profilePicture"]),
         numberToOrder: order["numberToOrder"],
         selectedPrice: order["selectedPrice"],

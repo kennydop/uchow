@@ -189,7 +189,7 @@ class _DishDetailState extends State<DishDetail> {
                               ),
                               IconAndData(
                                 icon: AppIcons.clock,
-                                text: restaurant.diliveryTime,
+                                text: "30mins",
                                 iconSize: AppDimensions.height16,
                                 textSize: AppDimensions.height16,
                               ),

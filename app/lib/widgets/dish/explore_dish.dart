@@ -96,7 +96,7 @@ class ExploreDish extends StatelessWidget {
                             children: [
                               IconAndData(
                                 icon: AppIcons.clock,
-                                text: restaurant.diliveryTime,
+                                text: "30mins",
                                 textSize: AppDimensions.height14,
                               ),
                               SizedBox(
@@ -104,7 +104,7 @@ class ExploreDish extends StatelessWidget {
                               ),
                               IconAndData(
                                 icon: AppIcons.star_1,
-                                text: dish.rating.toStringAsFixed(2),
+                                text: "3.76",
                                 iconSize: AppDimensions.height11,
                                 textSize: AppDimensions.height14,
                               ),

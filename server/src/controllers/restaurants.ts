@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { serverError } from "src/helpers";
+import { serverError } from "../helpers";
 import db from "../config/db";
 
 export const getAllRetaurants = async (

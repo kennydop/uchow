@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import db from "src/config/db";
-import { serverError } from "src/helpers";
+import db from "../config/db";
+import { serverError } from "../helpers";
 
 export const getAllDishes = async (
   req: Request,

@@ -26,9 +26,9 @@ app.use(morgan("common")); // remove before deploying
 app.use(cors(corsOptions));
 
 //routes
-app.use("api/users", usersRouter);
-app.use("api/restaurants", restaurantsRouter);
-app.use("api/dishes", dishesRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/restaurants", restaurantsRouter);
+app.use("/api/dishes", dishesRouter);
 
 //listen
 try {
