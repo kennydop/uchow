@@ -44,6 +44,15 @@ CREATE TABLE reviews (
   message TEXT NOT NULL
 );
 
+CREATE TABLE purchases (
+  id SERIAL PRIMARY KEY,
+  user_id INT NOT NULL REFERENCES users(id),
+  dish_id INT NOT NULL REFERENCES dishes(id),
+  restaurant_id INT NOT NULL REFERENCES restaurants(id),
+  number_ordered INT NOT NULL,
+  price FLOAT(2) NOT NULL
+);
+
 INSERT INTO
   restaurants(
     name,

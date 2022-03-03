@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -8,6 +8,7 @@ import {
   restaurantsRouter,
   dishesRouter,
   reviewsRouter,
+  purchasesRouter,
 } from "./src/routes";
 
 if (process.env.NODE_ENV !== "production") {
@@ -35,6 +36,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/restaurants", restaurantsRouter);
 app.use("/api/dishes", dishesRouter);
 app.use("/api/reviews", reviewsRouter);
+app.use("/api/purchases", purchasesRouter);
 
 //listen
 try {

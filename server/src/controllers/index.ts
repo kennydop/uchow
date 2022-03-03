@@ -1,14 +1,17 @@
+import { getUserPurchases, recordPurchase } from "./purchases";
 import { addReview, getAllReviews } from "./reviews";
-import { addDish, getADish, getAllDishes, getPopularDishes } from "./dishes";
-import { getAllRetaurants, addResturant, getARetaurant } from "./restaurants";
+import { addDish, getDish, getAllDishes, getPopularDishes } from "./dishes";
+import { getAllRetaurants, addResturant, getRetaurant } from "./restaurants";
 export {
   getAllRetaurants,
-  getARetaurant,
+  getRetaurant,
   addResturant,
   getAllDishes,
-  getADish,
+  getDish,
   getPopularDishes,
   addDish,
   addReview,
   getAllReviews,
+  getUserPurchases,
+  recordPurchase,
 };

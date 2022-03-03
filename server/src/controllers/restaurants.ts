@@ -22,7 +22,7 @@ export const getAllRetaurants = async (
   }
 };
 
-export const getARetaurant = async (
+export const getRetaurant = async (
   req: Request,
   res: Response
 ): Promise<Response> => {

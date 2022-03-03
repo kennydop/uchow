@@ -22,7 +22,7 @@ export const getAllDishes = async (
   }
 };
 
-export const getADish = async (
+export const getDish = async (
   req: Request,
   res: Response
 ): Promise<Response> => {

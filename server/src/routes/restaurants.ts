@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { addResturant, getAllRetaurants, getARetaurant } from "../controllers";
+import { addResturant, getAllRetaurants, getRetaurant } from "../controllers";
 
 const router = Router();
 
 router
   .get("/", getAllRetaurants)
-  .get("/:id", getARetaurant)
+  .get("/:id", getRetaurant)
   .post("/", addResturant);
 
 export default router;
