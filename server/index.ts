@@ -9,6 +9,7 @@ import {
   dishesRouter,
   reviewsRouter,
   purchasesRouter,
+  favoritesRouter,
 } from "./src/routes";
 
 if (process.env.NODE_ENV !== "production") {
@@ -37,6 +38,7 @@ app.use("/api/restaurants", restaurantsRouter);
 app.use("/api/dishes", dishesRouter);
 app.use("/api/reviews", reviewsRouter);
 app.use("/api/purchases", purchasesRouter);
+app.use("/api/favorites", favoritesRouter);
 
 //listen
 try {
