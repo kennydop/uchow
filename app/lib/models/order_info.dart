@@ -1,4 +1,4 @@
-import 'package:u_chow/models/restaurant_model.dart';
+import 'package:uchow/models/restaurant_model.dart';
 
 import 'dish_model.dart';
 

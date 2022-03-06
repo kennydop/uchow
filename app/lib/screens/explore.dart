@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/utils/constants.dart';
-import 'package:u_chow/widgets/dish/explore_dish.dart';
-import 'package:u_chow/widgets/dish/recent_dish.dart';
-import 'package:u_chow/widgets/text.dart';
-import 'package:u_chow/utils/dummydata.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/utils/constants.dart';
+import 'package:uchow/widgets/dish/explore_dish.dart';
+import 'package:uchow/widgets/dish/recent_dish.dart';
+import 'package:uchow/widgets/text.dart';
+import 'package:uchow/utils/dummydata.dart';
 
 class Explore extends StatefulWidget {
   const Explore({Key? key}) : super(key: key);

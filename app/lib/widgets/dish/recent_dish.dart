@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/models/dish_model.dart';
-import 'package:u_chow/models/restaurant_model.dart';
-import 'package:u_chow/utils/app_icons.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/utils/constants.dart';
-import 'package:u_chow/widgets/iconanddata.dart';
-import 'package:u_chow/widgets/text.dart';
+import 'package:uchow/models/dish_model.dart';
+import 'package:uchow/models/restaurant_model.dart';
+import 'package:uchow/utils/app_icons.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/utils/constants.dart';
+import 'package:uchow/widgets/iconanddata.dart';
+import 'package:uchow/widgets/text.dart';
 
 class RecentDish extends StatelessWidget {
   final DishModel dish;

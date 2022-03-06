@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/controllers/bag_controller.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/utils/constants.dart';
-import 'package:u_chow/widgets/AppTextButton.dart';
-import 'package:u_chow/widgets/dish/bag_dish.dart';
-import 'package:u_chow/widgets/text.dart';
+import 'package:uchow/controllers/bag_controller.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/utils/constants.dart';
+import 'package:uchow/widgets/AppTextButton.dart';
+import 'package:uchow/widgets/dish/bag_dish.dart';
+import 'package:uchow/widgets/text.dart';
 
 class Bag extends StatelessWidget {
   const Bag({Key? key}) : super(key: key);
@@ -138,7 +138,9 @@ class Bag extends StatelessWidget {
                             itemBuilder: ((context, index) {
                               if (paymentOptions[index]["available"] == true) {
                                 return AppTextButtonWithIcon(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    print("you");
+                                  },
                                   text: paymentOptions[index]["name"],
                                   image: paymentOptions[index]["image"],
                                 );

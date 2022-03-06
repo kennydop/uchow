@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:u_chow/models/dish_model.dart';
-import 'package:u_chow/models/order_info.dart';
-import 'package:u_chow/models/restaurant_model.dart';
+import 'package:uchow/models/dish_model.dart';
+import 'package:uchow/models/order_info.dart';
+import 'package:uchow/models/restaurant_model.dart';
 
 class BagController extends GetxController {
   RxList<OrderInfo> bag = <OrderInfo>[].obs;

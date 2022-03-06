@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/controllers/bag_controller.dart';
-import 'package:u_chow/utils/constants.dart';
+import 'package:uchow/controllers/bag_controller.dart';
+import 'package:uchow/utils/constants.dart';
 
 import '../../utils/colors.dart';
 import '../text.dart';

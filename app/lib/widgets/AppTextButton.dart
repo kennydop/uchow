@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/utils/constants.dart';
-import 'package:u_chow/widgets/text.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/utils/constants.dart';
+import 'package:uchow/widgets/text.dart';
 
 class AppTextButton extends StatelessWidget {
   String text;
@@ -48,7 +48,7 @@ class AppTextButtonWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

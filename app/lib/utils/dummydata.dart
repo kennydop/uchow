@@ -99,7 +99,7 @@ List<DishModel> dishes = [
 List reviews = [
   {
     "uid": "1",
-    "dishID": "1",
+    "dishID": 1,
     "name": "Oppong Nkrumah",
     "review":
         "Video provides a powerful way to help you prove your point. When you click Online Video, you can paste in the embed code for the video you want to add. You can also type a keyword to search online for the video that best fits your document.",
@@ -108,7 +108,7 @@ List reviews = [
   },
   {
     "uid": "36",
-    "dishID": "1",
+    "dishID": 1,
     "name": "Thomas Lemah",
     "review":
         "To make your document look professionally produced, Word provides header, footer, cover page, and text box designs that complement each other.",
@@ -117,7 +117,7 @@ List reviews = [
   },
   {
     "uid": "2",
-    "dishID": "1",
+    "dishID": 1,
     "name": "Gray Mensah",
     "review":
         "To make your document look professionally produced, Word provides header, footer, cover page, and text box designs that complement each other. For example, you can add a matching cover page, header, and sidebar. Click Insert and then choose the elements you want from the different galleries.",
@@ -126,7 +126,7 @@ List reviews = [
   },
   {
     "uid": "3",
-    "dishID": "1",
+    "dishID": 1,
     "name": "Perry korangten",
     "review":
         "For example, you can add a matching cover page, header, and sidebar. Click Insert and then choose the elements you want from the different galleries.",
@@ -135,7 +135,7 @@ List reviews = [
   },
   {
     "uid": "4",
-    "dishID": "1",
+    "dishID": 1,
     "name": "Ansah Godfred",
     "review":
         "Themes and styles also help keep your document coordinated. When you click Design and choose a new Theme, the pictures, charts, and SmartArt graphics change to match your new theme. When you apply styles, your headings change to match the new theme.",
@@ -144,7 +144,7 @@ List reviews = [
   },
   {
     "uid": "5",
-    "dishID": "2",
+    "dishID": 2,
     "name": "Rue Johnson",
     "review":
         "When you click Design and choose a new Theme, the pictures, charts, and SmartArt graphics change to match your new theme. When you apply styles, your headings change to match the new theme.",
@@ -153,7 +153,7 @@ List reviews = [
   },
   {
     "uid": "6",
-    "dishID": "2",
+    "dishID": 2,
     "name": "Kendrick Larmar",
     "review":
         "and SmartArt graphics change to match your new theme. When you apply styles, your",
@@ -162,7 +162,7 @@ List reviews = [
   },
   {
     "uid": "7",
-    "dishID": "2",
+    "dishID": 2,
     "name": "Keith Merky",
     "review":
         "Save time in Word with new buttons that show up where you need them. To change the way a picture fits in your document, click it and a button for layout options appears",
@@ -171,7 +171,7 @@ List reviews = [
   },
   {
     "uid": "8",
-    "dishID": "2",
+    "dishID": 2,
     "name": "Thomas Shelby",
     "review":
         "you need them. To change the way a picture fits in your document, click it and a button for layout options appears",
@@ -180,7 +180,7 @@ List reviews = [
   },
   {
     "uid": "9",
-    "dishID": "2",
+    "dishID": 2,
     "name": "Eva Johnson",
     "review":
         "Save time in Word with new buttons that show up where you need them. To change the way a picture fits in your document, click it and a button for layout options appears next to it. When you work on a table, click where you want to add a row or a column, and then click the plus sign.",
@@ -189,7 +189,7 @@ List reviews = [
   },
   {
     "uid": "10",
-    "dishID": "2",
+    "dishID": 2,
     "name": "Ivar the Boneless",
     "review":
         "Save time in Word with new buttons that show up where you need them.",
@@ -198,7 +198,7 @@ List reviews = [
   },
   {
     "uid": "11",
-    "dishID": "2",
+    "dishID": 2,
     "name": "Zacheus Freeman",
     "review":
         "If you need to stop reading before you reach the end, Word remembers where you left off - even on another device",
@@ -207,7 +207,7 @@ List reviews = [
   },
   {
     "uid": "12",
-    "dishID": "3",
+    "dishID": 3,
     "name": "Korang Valentine",
     "review":
         "Reading is easier, too, in the new Reading view. You can collapse parts of the document and focus on the text you want. ",
@@ -216,7 +216,7 @@ List reviews = [
   },
   {
     "uid": "13",
-    "dishID": "3",
+    "dishID": 3,
     "name": "Patrice Lumumba",
     "review":
         "You can collapse parts of the document and focus on the text you want",
@@ -225,7 +225,7 @@ List reviews = [
   },
   {
     "uid": "14",
-    "dishID": "3",
+    "dishID": 3,
     "name": "Edjah Ndoum",
     "review":
         "Video provides a powerful way to help you prove your point. When you click Online Video, you can paste in the embed code for the video you want to add. You can also type a keyword to search online for the video that best fits your document.",
@@ -234,7 +234,7 @@ List reviews = [
   },
   {
     "uid": "15",
-    "dishID": "3",
+    "dishID": 3,
     "name": "Christensen Dome",
     "review":
         "If you need to stop reading before you reach the end, Word remembers where you left off - even on another device",
@@ -243,7 +243,7 @@ List reviews = [
   },
   {
     "uid": "16",
-    "dishID": "3",
+    "dishID": 3,
     "name": "Akorsu Juliet Enyornam",
     "review":
         "you need them. To change the way a picture fits in your document, click it and a button for layout options appears",
@@ -252,7 +252,7 @@ List reviews = [
   },
   {
     "uid": "17",
-    "dishID": "3",
+    "dishID": 3,
     "name": "Big Hero 6",
     "review":
         "you need them. To change the way a picture fits in your document, click it and a button for layout options appears",
@@ -261,7 +261,7 @@ List reviews = [
   },
   {
     "uid": "18",
-    "dishID": "4",
+    "dishID": 4,
     "name": "Ashawo Season",
     "review":
         "Reading is easier, too, in the new Reading view. You can collapse parts of the document and focus on the text you want. ",
@@ -270,7 +270,7 @@ List reviews = [
   },
   {
     "uid": "19",
-    "dishID": "4",
+    "dishID": 4,
     "name": "Thomas Shelby",
     "review":
         "When you click Design and choose a new Theme, the pictures, charts, and SmartArt graphics change to match your new theme. When you apply styles, your headings change to match the new theme.",
@@ -279,7 +279,7 @@ List reviews = [
   },
   {
     "uid": "20",
-    "dishID": "4",
+    "dishID": 4,
     "name": "Ansah Godfred",
     "review": "in the new Reading view",
     "stars": 4,
@@ -287,7 +287,7 @@ List reviews = [
   },
   {
     "uid": "21",
-    "dishID": "4",
+    "dishID": 4,
     "name": "Rue Johnson",
     "review":
         "Design and choose a new Theme, the pictures, charts, and SmartArt",
@@ -296,7 +296,7 @@ List reviews = [
   },
   {
     "uid": "22",
-    "dishID": "4",
+    "dishID": 4,
     "name": "Edjah Ndoum",
     "review":
         "Insert and then choose the elements you want from the different galleries",
@@ -305,7 +305,7 @@ List reviews = [
   },
   {
     "uid": "23",
-    "dishID": "4",
+    "dishID": 4,
     "name": "Gray Mensah",
     "review":
         "Reading is easier, too, in the new Reading view. You can collapse parts of the document and focus on the text you want. ",
@@ -314,7 +314,7 @@ List reviews = [
   },
   {
     "uid": "24",
-    "dishID": "4",
+    "dishID": 4,
     "name": "Patrice Lumumba",
     "review":
         "you need them. To change the way a picture fits in your document, click it and a button for layout options appears",
@@ -323,7 +323,7 @@ List reviews = [
   },
   {
     "uid": "25",
-    "dishID": "5",
+    "dishID": 5,
     "name": "Edjah Ndoum",
     "review":
         "When you click Design and choose a new Theme, the pictures, charts, and SmartArt graphics change to match your new theme. When you apply styles, your headings change to match the new theme.",
@@ -332,7 +332,7 @@ List reviews = [
   },
   {
     "uid": "26",
-    "dishID": "5",
+    "dishID": 5,
     "name": "Ansah Godfred",
     "review":
         "Insert and then choose the elements you want from the different galleries",
@@ -341,7 +341,7 @@ List reviews = [
   },
   {
     "uid": "27",
-    "dishID": "5",
+    "dishID": 5,
     "name": "Gray Mensah",
     "review":
         "Reading is easier, too, in the new Reading view. You can collapse parts of the document and focus on the text you want. ",
@@ -350,7 +350,7 @@ List reviews = [
   },
   {
     "uid": "28",
-    "dishID": "5",
+    "dishID": 5,
     "name": "Thomas Shelby",
     "review":
         "Design and choose a new Theme, the pictures, charts, and SmartArt",
@@ -359,7 +359,7 @@ List reviews = [
   },
   {
     "uid": "29",
-    "dishID": "5",
+    "dishID": 5,
     "name": "Rue Johnson",
     "review":
         "you need them. To change the way a picture fits in your document, click it and a button for layout options appears",
@@ -368,7 +368,7 @@ List reviews = [
   },
   {
     "uid": "30",
-    "dishID": "5",
+    "dishID": 5,
     "name": "Patrice Lumumba",
     "review": "in the new Reading view",
     "stars": 5,
@@ -376,7 +376,7 @@ List reviews = [
   },
   {
     "uid": "31",
-    "dishID": "6",
+    "dishID": 6,
     "name": "Edjah Ndoum",
     "review":
         "Reading is easier, too, in the new Reading view. You can collapse parts of the document and focus on the text you want. ",
@@ -385,7 +385,7 @@ List reviews = [
   },
   {
     "uid": "32",
-    "dishID": "6",
+    "dishID": 6,
     "name": "Rue Johnson",
     "review":
         "you can paste in the embed code for the video you want to add. You can also type a keyword to search online",
@@ -394,7 +394,7 @@ List reviews = [
   },
   {
     "uid": "33",
-    "dishID": "6",
+    "dishID": 6,
     "name": "Ansah Godfred",
     "review": "in the new Reading view",
     "stars": 4,
@@ -402,7 +402,7 @@ List reviews = [
   },
   {
     "uid": "34",
-    "dishID": "6",
+    "dishID": 6,
     "name": "Gray Mensah",
     "review":
         "When you click Design and choose a new Theme, the pictures, charts, and SmartArt graphics change to match your new theme. When you apply styles, your headings change to match the new theme.",
@@ -411,7 +411,7 @@ List reviews = [
   },
   {
     "uid": "35",
-    "dishID": "6",
+    "dishID": 6,
     "name": "Thomas Shelby",
     "review":
         "you need them. To change the way a picture fits in your document, click it and a button for layout options appears",
@@ -420,7 +420,7 @@ List reviews = [
   },
   {
     "uid": "37",
-    "dishID": "1",
+    "dishID": 1,
     "name": "ergeragvbeargberg",
     "review": "",
     "stars": 4,
@@ -428,7 +428,7 @@ List reviews = [
   },
   {
     "uid": "38",
-    "dishID": "2",
+    "dishID": 2,
     "name": "Michael Shelby",
     "review": "",
     "stars": 4,
@@ -436,7 +436,7 @@ List reviews = [
   },
   {
     "uid": "39",
-    "dishID": "2",
+    "dishID": 2,
     "name": "efuyfewygufew",
     "review": "",
     "stars": 3,
@@ -444,7 +444,7 @@ List reviews = [
   },
   {
     "uid": "40",
-    "dishID": "3",
+    "dishID": 3,
     "name": "wfeuyfewuygfwgvhgvw",
     "review": "",
     "stars": 4,

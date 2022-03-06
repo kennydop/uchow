@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/screens/bag.dart';
-import 'package:u_chow/screens/explore.dart';
-import 'package:u_chow/screens/favorites.dart';
-import 'package:u_chow/utils/app_icons.dart';
-import 'package:u_chow/utils/colors.dart';
+import 'package:get/get.dart';
+import 'package:uchow/controllers/user_controller.dart';
+import 'package:uchow/screens/auth/signin.dart';
+import 'package:uchow/screens/bag.dart';
+import 'package:uchow/screens/explore.dart';
+import 'package:uchow/screens/favorites.dart';
+import 'package:uchow/utils/app_icons.dart';
+import 'package:uchow/utils/colors.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({Key? key}) : super(key: key);
@@ -23,6 +26,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   @override
   Widget build(BuildContext context) {
+    final userController = Get.find<UserController>();
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

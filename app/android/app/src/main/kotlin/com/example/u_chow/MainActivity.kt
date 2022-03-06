@@ -1,4 +1,4 @@
-package com.example.u_chow
+package com.trayl.uchow
 
 import io.flutter.embedding.android.FlutterActivity
 

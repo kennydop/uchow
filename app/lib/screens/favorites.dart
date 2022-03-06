@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/utils/constants.dart';
-import 'package:u_chow/utils/dummydata.dart';
-import 'package:u_chow/widgets/dish/explore_dish.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/utils/constants.dart';
+import 'package:uchow/utils/dummydata.dart';
+import 'package:uchow/widgets/dish/explore_dish.dart';
 
 import '../widgets/text.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/widgets/text.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/widgets/text.dart';
 
 class Filter extends StatelessWidget {
   const Filter({Key? key}) : super(key: key);
@@ -11,6 +11,7 @@ class Filter extends StatelessWidget {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         elevation: 0.5,
+        backgroundColor: Colors.white,
         title: AppText(text: "Filter"),
         iconTheme: const IconThemeData(color: AppColors.textColor),
       ),

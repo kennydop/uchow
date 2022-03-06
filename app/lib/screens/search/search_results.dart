@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/widgets/text.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/widgets/text.dart';
 
 class SearchResults extends StatelessWidget {
   const SearchResults({Key? key}) : super(key: key);

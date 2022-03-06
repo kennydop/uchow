@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/controllers/bag_controller.dart';
-import 'package:u_chow/screens/auth/signin.dart';
-import 'package:u_chow/screens/auth/singup.dart';
-import 'package:u_chow/screens/bottom_navbar.dart';
-import 'package:u_chow/screens/bag.dart';
-import 'package:u_chow/screens/dishdetail.dart';
-import 'package:u_chow/screens/explore.dart';
-import 'package:u_chow/screens/favorites.dart';
-import 'package:u_chow/screens/search/filter.dart';
-import 'package:u_chow/screens/profile.dart';
-import 'package:u_chow/screens/search/search.dart';
-import 'package:u_chow/screens/search/search_results.dart';
+import 'package:uchow/controllers/bag_controller.dart';
+import 'package:uchow/controllers/user_controller.dart';
+import 'package:uchow/screens/auth/signin.dart';
+import 'package:uchow/screens/auth/singup.dart';
+import 'package:uchow/screens/bottom_navbar.dart';
+import 'package:uchow/screens/bag.dart';
+import 'package:uchow/screens/dishdetail.dart';
+import 'package:uchow/screens/explore.dart';
+import 'package:uchow/screens/favorites.dart';
+import 'package:uchow/screens/search/filter.dart';
+import 'package:uchow/screens/profile.dart';
+import 'package:uchow/screens/search/search.dart';
+import 'package:uchow/screens/search/search_results.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:u_chow/utils/colors.dart';
+import 'package:uchow/utils/colors.dart';
 
 void main() async {
   await GetStorage.init();
@@ -26,6 +27,7 @@ class UChow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BagController bagController = Get.put(BagController());
+    final UserController userController = Get.put(UserController());
 
     return GetMaterialApp(
       title: 'UChow',
@@ -47,7 +49,7 @@ class UChow extends StatelessWidget {
         GetPage(name: "/signin", page: () => const SignIn()),
         GetPage(name: "/signup", page: () => const SingUp()),
       ],
-      initialRoute: "/signin",
+      initialRoute: userController.user.id == 0 ? "/signin" : "/",
     );
   }
 }

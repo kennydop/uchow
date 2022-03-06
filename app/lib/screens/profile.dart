@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/utils/constants.dart';
-import 'package:u_chow/widgets/AppTextButton.dart';
-import 'package:u_chow/widgets/text.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/utils/constants.dart';
+import 'package:uchow/widgets/AppTextButton.dart';
+import 'package:uchow/widgets/text.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);

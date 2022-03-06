@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:u_chow/utils/colors.dart';
-import 'package:u_chow/utils/constants.dart';
-import 'package:u_chow/widgets/AppTextButton.dart';
-import 'package:u_chow/widgets/text.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:uchow/api_calls/auth.dart';
+import 'package:uchow/utils/colors.dart';
+import 'package:uchow/utils/constants.dart';
+import 'package:uchow/widgets/AppTextButton.dart';
+import 'package:uchow/widgets/text.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -159,7 +161,9 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(height: AppDimensions.height14),
                   AppTextButtonWithIcon(
-                      onPressed: () {},
+                      onPressed: () {
+                        GoogleAuth().handleSignIn();
+                      },
                       image:
                           "https://hackaday.com/wp-content/uploads/2016/08/google-g-logo.png?resize=50",
                       text: "Continue with Google")
