@@ -4,7 +4,8 @@ CREATE TABLE users (
   dilivery_address VARCHAR,
   tel VARCHAR(10),
   email VARCHAR NOT NULL,
-  password VARCHAR NOT NULL,
+  password VARCHAR,
+  provider VARCHAR(25) NOT NULL,
   favorites INT [],
   image VARCHAR,
   payment_methods JSON [],
@@ -19,7 +20,6 @@ CREATE TABLE restaurants (
   tel VARCHAR(10) NOT NULL,
   description TEXT,
   location VARCHAR NOT NULL,
-  college VARCHAR NOT NULL,
   image VARCHAR NOT NULL,
   UNIQUE (tel)
 );
@@ -57,7 +57,6 @@ INSERT INTO
     name,
     tel,
     location,
-    college,
     image
   )
 VALUES
@@ -65,42 +64,36 @@ VALUES
     'Heavenly Kitchen Fast Food',
     '0249555935',
     'Success City',
-    'University of Cape Coast',
     'https://i.pinimg.com/564x/01/88/dc/0188dc41881e0e410b5375cdead5f49a.jpg'
   ),
   (
     'Cheddar Fast Foods',
     '0249956539',
     'Ayensu Road',
-    'University of Cape Coast',
     'https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_1280.png'
   ),
   (
     'Tasty Chef Fast Foods',
     '0249555936',
     'Adehyiɛ Hall',
-    'University of Cape Coast',
     'https://cdn.pixabay.com/photo/2015/12/09/01/02/mandalas-1084082_1280.jpg'
   ),
   (
     'Daavi''s Kitchen',
     '0249956530',
     'Apɛwosika',
-    'University of Cape Coast',
     'https://cdn.pixabay.com/photo/2018/08/21/23/29/forest-3622519_1280.jpg'
   ),
   (
     'Gↄbɛ Wura',
     '0249555937',
     'Amamoma',
-    'University of Cape Coast',
     'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2020/09/Frame-47.png'
   ),
   (
     'Amelia Waakye',
     '0249956531',
     'Science Market',
-    'University of Cape Coast',
     'https://cdn.pixabay.com/photo/2015/12/09/01/02/mandalas-1084082_1280.jpg'
   );
 

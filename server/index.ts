@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+
 import {
   usersRouter,
   restaurantsRouter,
@@ -30,6 +32,7 @@ const corsOptions = {
 app.use(express.static("public"));
 app.use(express.json());
 app.use(helmet());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(morgan("common")); // remove before deploying
 app.use(cors(corsOptions));
 

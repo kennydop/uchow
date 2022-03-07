@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { googleLogin } from "../controllers";
-import { validateUser } from "src/validations";
+import { validateUser } from "../validators";
 const router = Router();
 router
   .post("/signup", validateUser)
