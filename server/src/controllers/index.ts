@@ -1,4 +1,4 @@
-import { googleLogin, emailSignUp } from "./auth";
+import { googleLogin, emailSignUp, emailSignIn } from "./auth";
 import { getUserPurchases, recordPurchase } from "./purchases";
 import { addReview, getAllReviews } from "./reviews";
 import { addDish, getDish, getAllDishes, getPopularDishes } from "./dishes";
@@ -17,4 +17,5 @@ export {
   recordPurchase,
   googleLogin,
   emailSignUp,
+  emailSignIn,
 };

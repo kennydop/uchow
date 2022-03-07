@@ -52,23 +52,16 @@ export const emailSignUp = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  console.log("::::::::::body:", req.body);
   const { email, name, password } = req.body;
   const saltRounds = 12;
   try {
-    const hash = bcrypt.hash(password, saltRounds, async (error, hash) => {
-      if (error) {
-        throw new Error(error.message);
-      }
-      return hash;
-    });
-    const user = await db
+    const hash = await bcrypt.hash(password, saltRounds);
+    const user: QueryResultRow = await db
       .query(
         "INSERT INTO users(name, email, password, provider, created_at, modified_at) VALUES ($1, $2, $3, $4, current_timestamp, current_timestamp) RETURNING *",
         [name, email, hash, "email"]
       )
       .then((payload) => {
-        console.log(payload.rows[0]);
         return payload.rows[0];
       })
       .catch((error) => {
@@ -80,14 +73,45 @@ export const emailSignUp = async (
     res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
     return res.status(200).json({ token: token, ...results });
   } catch (error) {
-    console.log(error);
+    const { status, ...rest } = serverError(error);
+    return res.status(status).json(rest);
+  }
+};
+
+export const emailSignIn = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { email, password } = req.body;
+  try {
+    const user: QueryResultRow = await db
+      .query("SELECT * FROM users WHERE email=$1", [email])
+      .then((payload) => {
+        return payload.rows[0];
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+    if (user) {
+      const matches = await bcrypt.compare(password, user.password);
+      if (!matches) {
+        throw new Error("Incorrect Password");
+      }
+      const results = refactorUserData(user);
+      const token: String = getToken(results);
+      const refreshToken: String = getRefreshToken(results);
+      res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
+      return res.status(200).json({ token: token, ...results });
+    } else {
+      throw new Error("Account not found");
+    }
+  } catch (error) {
     const { status, ...rest } = serverError(error);
     return res.status(status).json(rest);
   }
 };
 
 const refactorUserData = (user: QueryResultRow) => {
-  console.log(user);
   const {
     password,
     provider,
