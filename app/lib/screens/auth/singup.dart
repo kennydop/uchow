@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uchow/api_calls/google_auth.dart';
 import 'package:uchow/utils/colors.dart';
 import 'package:uchow/utils/constants.dart';
 import 'package:uchow/widgets/AppTextButton.dart';
@@ -22,6 +23,7 @@ class _SingUpState extends State<SingUp> {
   String _middleName = "";
   bool showPassword = false;
   bool showConfirmPassword = false;
+  final googleAuth = GoogleAuth();
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +44,6 @@ class _SingUpState extends State<SingUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // AppText(
-                  //     text: "Sign Up",
-                  //     type: "title",
-                  //     size: AppDimensions.height18),
-                  // SizedBox(height: AppDimensions.height14),
                   TextFormField(
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
@@ -284,7 +281,9 @@ class _SingUpState extends State<SingUp> {
                   ),
                   SizedBox(height: AppDimensions.height14),
                   AppTextButtonWithIcon(
-                      onPressed: () {},
+                      onPressed: () {
+                        googleAuth.handleSignIn();
+                      },
                       image:
                           "https://hackaday.com/wp-content/uploads/2016/08/google-g-logo.png?resize=50",
                       text: "Continue with Google")

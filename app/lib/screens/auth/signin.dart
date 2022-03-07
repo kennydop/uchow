@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:uchow/api_calls/auth.dart';
+import 'package:uchow/api_calls/google_auth.dart';
 import 'package:uchow/utils/colors.dart';
 import 'package:uchow/utils/constants.dart';
 import 'package:uchow/widgets/AppTextButton.dart';
@@ -19,6 +19,7 @@ class _SignInState extends State<SignIn> {
   String _email = "";
   String _password = "";
   bool showPassword = false;
+  final googleAuth = GoogleAuth();
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +163,7 @@ class _SignInState extends State<SignIn> {
                   SizedBox(height: AppDimensions.height14),
                   AppTextButtonWithIcon(
                       onPressed: () {
-                        GoogleAuth().handleSignIn();
+                        googleAuth.handleSignIn();
                       },
                       image:
                           "https://hackaday.com/wp-content/uploads/2016/08/google-g-logo.png?resize=50",

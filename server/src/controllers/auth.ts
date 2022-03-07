@@ -14,10 +14,10 @@ export const googleLogin = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const account: GoogleSignInAccount = req.body;
+  const { email, name, image } = req.body;
   try {
     var user: QueryResultRow = await db
-      .query("SELECT * FROM users WHERE email=$1", [account.email])
+      .query("SELECT * FROM users WHERE email=$1", [email])
       .then((payload) => {
         return payload.rows[0];
       })
@@ -28,7 +28,7 @@ export const googleLogin = async (
       user = await db
         .query(
           "INSERT INTO users(name, email, image, provider, created_at, modified_at) VALUES($1, $2, $3, 'google', current_timestamp, current_timestamp) RETURNING *",
-          [account.displayName, account.email, account.photoUrl]
+          [name, email, image]
         )
         .then((payload) => {
           return payload.rows[0];
