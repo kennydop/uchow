@@ -1,14 +1,13 @@
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
-  dilivery_address VARCHAR NOT NULL,
-  tel VARCHAR(10) NOT NULL,
+  dilivery_address VARCHAR,
+  tel VARCHAR(10),
   email VARCHAR NOT NULL,
   password VARCHAR NOT NULL,
   favorites INT [],
   image VARCHAR,
   payment_methods JSON [],
-  college VARCHAR NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
   modified_at TIMESTAMPTZ NOT NULL,
   UNIQUE(tel, email)

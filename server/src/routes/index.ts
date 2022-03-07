@@ -4,6 +4,7 @@ import dishesRouter from "./dishes";
 import reviewsRouter from "./reviews";
 import purchasesRouter from "./purchases";
 import favoritesRouter from "./favorites";
+import authRouter from "./auth";
 
 export {
   usersRouter,
@@ -12,4 +13,5 @@ export {
   reviewsRouter,
   purchasesRouter,
   favoritesRouter,
+  authRouter,
 };

@@ -1,3 +1,4 @@
+import { googleLogin } from "./auth";
 import { getUserPurchases, recordPurchase } from "./purchases";
 import { addReview, getAllReviews } from "./reviews";
 import { addDish, getDish, getAllDishes, getPopularDishes } from "./dishes";
@@ -14,4 +15,5 @@ export {
   getAllReviews,
   getUserPurchases,
   recordPurchase,
+  googleLogin,
 };

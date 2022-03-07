@@ -10,6 +10,7 @@ import {
   reviewsRouter,
   purchasesRouter,
   favoritesRouter,
+  authRouter,
 } from "./src/routes";
 
 if (process.env.NODE_ENV !== "production") {
@@ -34,6 +35,7 @@ app.use(cors(corsOptions));
 
 //routes
 app.use("/api/users", usersRouter);
+app.use("/api/auth", authRouter);
 app.use("/api/restaurants", restaurantsRouter);
 app.use("/api/dishes", dishesRouter);
 app.use("/api/reviews", reviewsRouter);
