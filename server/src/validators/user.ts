@@ -3,7 +3,7 @@ import Joi from "joi";
 import { LoginDetails } from "../interfaces";
 import { serverError } from "../helpers";
 const schema = Joi.object({
-  name: Joi.string().alphanum().min(3),
+  name: Joi.string().min(3),
   email: Joi.string()
     .email({
       minDomainSegments: 2,
@@ -22,7 +22,7 @@ export const validateUser = async (
 ): Promise<void> => {
   try {
     const loginDetails: LoginDetails = await schema.validateAsync(req.body);
-    next(loginDetails);
+    next();
   } catch (error) {
     const { status, ...rest } = serverError(error);
     res.status(status).json(rest);

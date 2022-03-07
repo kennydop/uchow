@@ -1,2 +1,3 @@
 import { GoogleSignInAccount, LoginDetails } from "./auth";
-export { GoogleSignInAccount, LoginDetails };
+import { User } from "./user";
+export { GoogleSignInAccount, LoginDetails, User };

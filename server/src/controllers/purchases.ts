@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { serverError } from "../helpers";
 import db from "../config/db";
+import { QueryResultRow } from "pg";
 
 export const getUserPurchases = async (
   req: Request,
@@ -28,7 +29,7 @@ export const recordPurchase = async (
 ): Promise<Response> => {
   const { user_id, dish_id, restaurant_id, number_ordered, price } = req.body;
   try {
-    const newOrder = await db
+    const newOrder: QueryResultRow = await db
       .query(
         "INSERT INTO purchases(user_id, dish_id, restaurant_id, number_ordered, price) VALUES ($1, $2, $3, $4, $5) RETURNING *",
         [user_id, dish_id, restaurant_id, number_ordered, price]

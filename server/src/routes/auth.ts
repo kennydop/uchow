@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { googleLogin } from "../controllers";
+import { emailSignUp, googleLogin } from "../controllers";
 import { validateUser } from "../validators";
 const router = Router();
 router
-  .post("/signup", validateUser)
+  .post("/signup", validateUser, emailSignUp)
   .post("/signin", validateUser)
   .post("/glogin", googleLogin);
 export default router;

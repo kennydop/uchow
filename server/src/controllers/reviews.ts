@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { serverError } from "../helpers";
 import db from "../config/db";
 import reviews from "src/routes/reviews";
+import { QueryResultRow } from "pg";
 
 export const addReview = async (
   req: Request,
@@ -32,10 +33,10 @@ export const getAllReviews = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const reviews = await db
+    const reviews: QueryResultRow = await db
       .query("SELECT * FROM reviews WHERE dish_id=$1", [req.params.id])
       .then((payload) => {
-        return payload.rows;
+        return payload.rows[0];
       })
       .catch((error) => {
         throw new Error(error);

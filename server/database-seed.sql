@@ -2,26 +2,24 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
   dilivery_address VARCHAR,
-  tel VARCHAR(10),
-  email VARCHAR NOT NULL,
+  tel VARCHAR(10) UNIQUE,
+  email VARCHAR NOT NULL UNIQUE,
   password VARCHAR,
   provider VARCHAR(25) NOT NULL,
   favorites INT [],
   image VARCHAR,
   payment_methods JSON [],
   created_at TIMESTAMPTZ NOT NULL,
-  modified_at TIMESTAMPTZ NOT NULL,
-  UNIQUE(tel, email)
+  modified_at TIMESTAMPTZ NOT NULL
 );
 
 CREATE TABLE restaurants (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
-  tel VARCHAR(10) NOT NULL,
+  tel VARCHAR(10) NOT NULL UNIQUE,
   description TEXT,
   location VARCHAR NOT NULL,
-  image VARCHAR NOT NULL,
-  UNIQUE (tel)
+  image VARCHAR NOT NULL
 );
 
 CREATE TABLE dishes (

@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import { serverError } from "../helpers";
 import db from "../config/db";
+import { QueryResultRow } from "pg";
 
 export const addFavorite = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   try {
-    const newFavorite = await db
+    const newFavorite: QueryResultRow = await db
       .query(
         "UPDATE users SET favorites = ARRAY_APPEND(favorites, $1) WHERE id=$2 RETURNING *",
         [req.body.dish_id, req.params.id]

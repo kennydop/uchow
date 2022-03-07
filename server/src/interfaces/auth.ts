@@ -8,7 +8,7 @@ export interface GoogleSignInAccount {
 }
 
 export interface LoginDetails {
-  name?: String;
-  email: String;
-  password: String;
+  login_name?: String;
+  login_email: String;
+  login_password: String;
 }

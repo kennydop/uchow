@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { QueryResultRow } from "pg";
 import db from "../config/db";
 import { serverError } from "../helpers";
 
@@ -7,7 +8,7 @@ export const getAllDishes = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const dishes = await db
+    const dishes: QueryResultRow = await db
       .query("SELECT * FROM dishes")
       .then((payload) => {
         return payload.rows;
@@ -27,7 +28,7 @@ export const getDish = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const dishes = await db
+    const dishes: QueryResultRow = await db
       .query("SELECT * FROM dishes WHERE id=$1", [req.params.id])
       .then((payload) => {
         return payload.rows[0];
@@ -48,7 +49,7 @@ export const addDish = async (
 ): Promise<Response> => {
   const { restaurant_id, name, price, toppings, image, description } = req.body;
   try {
-    const newDish = await db
+    const newDish: QueryResultRow = await db
       .query(
         "INSERT INTO dishes(restaurant_id, name, price, toppings, image, description) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
         [restaurant_id, name, price, toppings, image, description]
@@ -71,7 +72,7 @@ export const getPopularDishes = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const popular = await db
+    const popular: QueryResultRow = await db
       .query(
         "SELECT dishes.id, dishes.restaurant_id AS restaurantID, dishes.name, dishes.price, dishes.toppings, dishes.image, dishes.description, dishes.purchases, restaurants.name AS restaurantName, restaurants.location AS restaurantLocation FROM dishes JOIN restaurants ON restaurant_id=restaurants.id WHERE restaurants.college=$1 ORDER BY dishes.purchases DESC",
         [req.params.uni]
