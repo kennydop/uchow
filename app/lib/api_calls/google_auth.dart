@@ -3,6 +3,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:uchow/api_calls/api.dart';
 import 'package:uchow/controllers/user_controller.dart';
 
+import '../interfaces/interfaces.dart';
+
 class GoogleAuth {
   static GoogleAuth _instance = GoogleAuth._internal();
   GoogleAuth._internal() {
@@ -11,6 +13,7 @@ class GoogleAuth {
   factory GoogleAuth() => _instance;
 
   final api = Api();
+  final UserController userController = Get.find<UserController>();
   final GoogleSignIn googleSignIn = GoogleSignIn(
     // Optional clientId
     // clientId:
@@ -22,36 +25,38 @@ class GoogleAuth {
 
   listenForUser() {
     googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
-      //send info to server
-      //get or insert user in db
-      //call userControllerLogin with payload
       print(account);
     });
     googleSignIn.signInSilently();
   }
 
-  Future<void> handleSignIn() async {
+  Future handleSignIn() async {
     try {
       GoogleSignInAccount? account = await googleSignIn.signIn();
-      sendToBackend(account);
+      return sendToBackend(account);
     } catch (error) {
-      print(error);
+      return LocalResponse(
+          success: false,
+          message:
+              "There was an error logging in with Google, please try again.");
     }
   }
 
-  Future<void> sendToBackend(GoogleSignInAccount? account) async {
-    print(account);
-    Response res =
-        await api.post("http://192.168.43.108:5000/api/auth/glogin", body: {
+  Future<LocalResponse> sendToBackend(GoogleSignInAccount? account) async {
+    var res =
+        await api.post("http://192.168.43.108:5000/api/auth/signin", body: {
       "name": account?.displayName,
       "email": account?.email,
       "id": account?.id,
       "image": account?.photoUrl,
       "serverAuthCode": account?.serverAuthCode
     });
-    print("done::::::::::::::");
-    print(res);
-    // Get.toNamed("/");
+    if (res["success"] == null) {
+      userController.setUser(res);
+      return LocalResponse(success: true);
+    } else {
+      return LocalResponse(success: false, message: res["message"]);
+    }
   }
 
   Future<void> handleSignOut() => googleSignIn.disconnect();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uchow/api_calls/google_auth.dart';
+import 'package:uchow/interfaces/interfaces.dart';
 import 'package:uchow/utils/colors.dart';
 import 'package:uchow/utils/constants.dart';
 import 'package:uchow/widgets/AppTextButton.dart';
@@ -23,7 +24,14 @@ class _SingUpState extends State<SingUp> {
   String _middleName = "";
   bool showPassword = false;
   bool showConfirmPassword = false;
+  String error = "";
   final googleAuth = GoogleAuth();
+
+  setError(String err) {
+    setState(() {
+      error = err;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +52,17 @@ class _SingUpState extends State<SingUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  if (error.isNotEmpty)
+                    Column(
+                      children: [
+                        AppText(
+                            text: error,
+                            color: Colors.red,
+                            size: AppDimensions.height14,
+                            ignoreOverflow: true),
+                        SizedBox(height: AppDimensions.height14),
+                      ],
+                    ),
                   TextFormField(
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
@@ -254,17 +273,11 @@ class _SingUpState extends State<SingUp> {
                         return;
                       }
                       _formKey.currentState!.save();
-                      print(_email);
-                      print(_password);
-                      print(_confirmPassword);
-                      print(_firstName);
-                      print(_middleName);
-                      print(_lastName);
                       //Send to API
                     },
                     text: "Sign Up",
                   ),
-                  SizedBox(height: AppDimensions.height14),
+                  SizedBox(height: AppDimensions.height8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -279,10 +292,13 @@ class _SingUpState extends State<SingUp> {
                           color: AppColors.primaryBlackColor)
                     ],
                   ),
-                  SizedBox(height: AppDimensions.height14),
+                  SizedBox(height: AppDimensions.height8),
                   AppTextButtonWithIcon(
-                      onPressed: () {
-                        googleAuth.handleSignIn();
+                      onPressed: () async {
+                        LocalResponse res = await googleAuth.handleSignIn();
+                        res.success == true
+                            ? Get.toNamed("/")
+                            : setError(res.message);
                       },
                       image:
                           "https://hackaday.com/wp-content/uploads/2016/08/google-g-logo.png?resize=50",

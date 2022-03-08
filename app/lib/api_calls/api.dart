@@ -63,7 +63,7 @@ class Api {
         .get(Uri.parse(url), headers: headers)
         .then((http.Response response) {
       final String res = response.body;
-      _updateCookie(response);
+      if (response.statusCode == 200) _updateCookie(response);
       return _decoder.convert(res);
     });
   }
@@ -74,7 +74,7 @@ class Api {
             body: _encoder.convert(body), headers: headers, encoding: encoding)
         .then((http.Response response) {
       final String res = response.body;
-      _updateCookie(response);
+      if (response.statusCode == 200) _updateCookie(response);
       return _decoder.convert(res);
     });
   }
@@ -85,7 +85,7 @@ class Api {
             body: _encoder.convert(body), headers: headers, encoding: encoding)
         .then((http.Response response) {
       final String res = response.body;
-      _updateCookie(response);
+      if (response.statusCode == 200) _updateCookie(response);
       return _decoder.convert(res);
     });
   }

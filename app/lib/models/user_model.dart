@@ -1,14 +1,15 @@
 class UserModel {
   UserModel(
-      {required this.id,
+      {required this.token,
+      required this.id,
       required this.name,
+      required this.email,
       this.image = "",
-      required this.college,
+      this.tel = "",
       this.diliveryAddress = ""});
 
+  String token, name, email, tel;
   int id;
-  String name;
   String? image;
-  String college;
   String? diliveryAddress;
 }

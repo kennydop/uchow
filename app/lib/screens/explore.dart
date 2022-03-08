@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uchow/controllers/user_controller.dart';
+import 'package:uchow/models/user_model.dart';
 import 'package:uchow/utils/colors.dart';
 import 'package:uchow/utils/constants.dart';
 import 'package:uchow/widgets/dish/explore_dish.dart';
@@ -18,9 +20,11 @@ class _ExploreState extends State<Explore> {
   var filterSelected = 0;
   var restaurantSelected = 0;
   final List<String> filterMethods = ["Popular", "Vegetarian", "< 30mins"];
+  final UserController userController = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
+    UserModel user = userController.user;
     return Scaffold(
         body: SingleChildScrollView(
       padding: EdgeInsets.only(top: AppDimensions.height22),
@@ -37,7 +41,7 @@ class _ExploreState extends State<Explore> {
                       children: [
                         Row(children: [
                           AppText(text: "Good Morning, "),
-                          AppText(text: "Jude")
+                          AppText(text: user.name)
                         ]),
                         InkWell(
                           onTap: () {
@@ -45,9 +49,10 @@ class _ExploreState extends State<Explore> {
                           },
                           child: Ink(
                             child: CircleAvatar(
-                              backgroundColor: AppColors.secondaryColor,
-                              backgroundImage:
-                                  const AssetImage('assets/images/pass.jpg'),
+                              backgroundColor: AppColors.white,
+                              backgroundImage: NetworkImage(user.image!.isEmpty
+                                  ? "https://cdn.business2community.com/wp-content/uploads/2014/08/My_profile-orange.png"
+                                  : user.image!),
                               minRadius: AppDimensions.height20,
                               maxRadius: AppDimensions.height20,
                             ),

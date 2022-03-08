@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:uchow/api_calls/google_auth.dart';
+import 'package:uchow/interfaces/interfaces.dart';
 import 'package:uchow/utils/colors.dart';
 import 'package:uchow/utils/constants.dart';
 import 'package:uchow/widgets/AppTextButton.dart';
@@ -20,10 +20,18 @@ class _SignInState extends State<SignIn> {
   String _password = "";
   bool showPassword = false;
   final googleAuth = GoogleAuth();
+  String error = "";
+
+  setError(String err) {
+    setState(() {
+      error = err;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         title: AppText(
             text: "Sign In", type: "title", size: AppDimensions.height18),
@@ -39,6 +47,17 @@ class _SignInState extends State<SignIn> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  if (error.isNotEmpty)
+                    Column(
+                      children: [
+                        AppText(
+                            text: error,
+                            color: Colors.red,
+                            size: AppDimensions.height14,
+                            ignoreOverflow: true),
+                        SizedBox(height: AppDimensions.height14),
+                      ],
+                    ),
                   TextFormField(
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
@@ -139,8 +158,6 @@ class _SignInState extends State<SignIn> {
                         return;
                       }
                       _formKey.currentState!.save();
-                      print(_email);
-                      print(_password);
                       //Send to API
                     },
                     text: "Sign In",
@@ -162,8 +179,11 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(height: AppDimensions.height14),
                   AppTextButtonWithIcon(
-                      onPressed: () {
-                        googleAuth.handleSignIn();
+                      onPressed: () async {
+                        LocalResponse res = await googleAuth.handleSignIn();
+                        res.success == true
+                            ? Get.toNamed("/")
+                            : setError(res.message);
                       },
                       image:
                           "https://hackaday.com/wp-content/uploads/2016/08/google-g-logo.png?resize=50",
