@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uchow/api_calls/email_auth.dart';
 import 'package:uchow/api_calls/google_auth.dart';
 import 'package:uchow/interfaces/interfaces.dart';
 import 'package:uchow/utils/colors.dart';
@@ -19,8 +20,9 @@ class _SignInState extends State<SignIn> {
   String _email = "";
   String _password = "";
   bool showPassword = false;
-  final googleAuth = GoogleAuth();
   String error = "";
+  final googleAuth = GoogleAuth();
+  final emailAuth = EmailAuth();
 
   setError(String err) {
     setState(() {
@@ -122,7 +124,7 @@ class _SignInState extends State<SignIn> {
                       if (!RegExp(
                               r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$")
                           .hasMatch(value)) {
-                        return 'Password must have at least \n• 1 uppercase character, \n• 1 lowercase character, \n• 1 number, \n• 6 characters long.';
+                        return 'Invalid Password';
                       }
 
                       return null;
@@ -153,12 +155,16 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(height: AppDimensions.height14),
                   AppTextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (!_formKey.currentState!.validate()) {
                         return;
                       }
                       _formKey.currentState!.save();
-                      //Send to API
+                      LocalResponse res =
+                          await emailAuth.signIn(_email, _password);
+                      res.success == true
+                          ? Get.toNamed("/")
+                          : setError(res.message);
                     },
                     text: "Sign In",
                   ),

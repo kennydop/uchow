@@ -24,4 +24,15 @@ class EmailAuth {
       return LocalResponse(success: false, message: res["message"]);
     }
   }
+
+  Future<LocalResponse> signIn(String email, String password) async {
+    var res = await api.post("http://192.168.43.108:5000/api/auth/signin",
+        body: {"email": email, "password": password});
+    if (res["success"] == null) {
+      userController.setUser(res);
+      return LocalResponse(success: true);
+    } else {
+      return LocalResponse(success: false, message: res["message"]);
+    }
+  }
 }
