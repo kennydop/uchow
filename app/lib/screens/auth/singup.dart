@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uchow/api_calls/email_auth.dart';
 import 'package:uchow/api_calls/google_auth.dart';
 import 'package:uchow/interfaces/interfaces.dart';
 import 'package:uchow/utils/colors.dart';
@@ -26,6 +27,7 @@ class _SingUpState extends State<SingUp> {
   bool showConfirmPassword = false;
   String error = "";
   final googleAuth = GoogleAuth();
+  final emailAuth = EmailAuth();
 
   setError(String err) {
     setState(() {
@@ -67,7 +69,7 @@ class _SingUpState extends State<SingUp> {
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                             horizontal: AppMargin.horizontal),
-                        labelText: 'First Name',
+                        labelText: 'First Name*',
                         floatingLabelStyle:
                             const TextStyle(color: AppColors.primaryColor),
                         border: const OutlineInputBorder(),
@@ -78,6 +80,9 @@ class _SingUpState extends State<SingUp> {
                     validator: (String? value) {
                       if (value!.trim().isEmpty) {
                         return 'First Name is required';
+                      }
+                      if (!RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
+                        return 'Name must contain only letters';
                       }
                       if (value.trim().length < 2) {
                         return 'Name must be at least 2 characters';
@@ -102,6 +107,13 @@ class _SingUpState extends State<SingUp> {
                             borderSide: BorderSide(
                           color: AppColors.primaryColor,
                         ))),
+                    validator: (String? value) {
+                      if (value!.isNotEmpty &&
+                          !RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
+                        return 'Name must contain only letters';
+                      }
+                      return null;
+                    },
                     onSaved: (String? value) {
                       _middleName = value.toString();
                     },
@@ -111,7 +123,7 @@ class _SingUpState extends State<SingUp> {
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                             horizontal: AppMargin.horizontal),
-                        labelText: 'Last Name',
+                        labelText: 'Last Name*',
                         floatingLabelStyle:
                             const TextStyle(color: AppColors.primaryColor),
                         border: const OutlineInputBorder(),
@@ -122,6 +134,9 @@ class _SingUpState extends State<SingUp> {
                     validator: (String? value) {
                       if (value!.trim().isEmpty) {
                         return 'Last Name is required';
+                      }
+                      if (!RegExp(r"^[a-zA-Z]+$").hasMatch(value)) {
+                        return 'Name must contain only letters';
                       }
                       if (value.trim().length < 2) {
                         return 'Name must be at least 2 characters';
@@ -138,7 +153,7 @@ class _SingUpState extends State<SingUp> {
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(
                             horizontal: AppMargin.horizontal),
-                        labelText: 'Email',
+                        labelText: 'Email*',
                         floatingLabelStyle:
                             const TextStyle(color: AppColors.primaryColor),
                         border: const OutlineInputBorder(),
@@ -268,12 +283,20 @@ class _SingUpState extends State<SingUp> {
                   ),
                   SizedBox(height: AppDimensions.height14),
                   AppTextButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (!_formKey.currentState!.validate()) {
                         return;
                       }
                       _formKey.currentState!.save();
-                      //Send to API
+                      LocalResponse res = await emailAuth.signUp(
+                          [_firstName, _middleName, _lastName]
+                              .join(" ")
+                              .replaceAll(RegExp(' +'), ' '),
+                          _email,
+                          _password);
+                      res.success == true
+                          ? Get.toNamed("/")
+                          : setError(res.message);
                     },
                     text: "Sign Up",
                   ),

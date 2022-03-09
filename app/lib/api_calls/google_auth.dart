@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:uchow/api_calls/api.dart';
+import 'package:uchow/helpers/api.dart';
 import 'package:uchow/controllers/user_controller.dart';
 
 import '../interfaces/interfaces.dart';
@@ -44,7 +44,7 @@ class GoogleAuth {
 
   Future<LocalResponse> sendToBackend(GoogleSignInAccount? account) async {
     var res =
-        await api.post("http://192.168.43.108:5000/api/auth/signin", body: {
+        await api.post("http://192.168.43.108:5000/api/auth/glogin", body: {
       "name": account?.displayName,
       "email": account?.email,
       "id": account?.id,

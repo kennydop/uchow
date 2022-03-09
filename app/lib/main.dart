@@ -49,7 +49,7 @@ class UChow extends StatelessWidget {
         GetPage(name: "/signin", page: () => const SignIn()),
         GetPage(name: "/signup", page: () => const SingUp()),
       ],
-      initialRoute: userController.user.id == 0 ? "/signin" : "/",
+      initialRoute: userController.user.token.isEmpty ? "/signin" : "/",
     );
   }
 }

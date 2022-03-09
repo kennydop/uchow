@@ -41,7 +41,7 @@ class _ExploreState extends State<Explore> {
                       children: [
                         Row(children: [
                           AppText(text: "Good Morning, "),
-                          AppText(text: user.name)
+                          AppText(text: user.name.split(" ")[0])
                         ]),
                         InkWell(
                           onTap: () {

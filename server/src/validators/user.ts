@@ -7,12 +7,10 @@ const schema = Joi.object({
   email: Joi.string()
     .email({
       minDomainSegments: 2,
-      tlds: { allow: ["com", "net", "org", "dev", "co"] },
+      tlds: { allow: ["com", "net", "org", "dev", "co", "gov", "io"] },
     })
     .required(),
-  password: Joi.string().pattern(
-    new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$")
-  ),
+  password: Joi.string().pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/),
 }).with("email", "password");
 
 export const validateUser = async (
