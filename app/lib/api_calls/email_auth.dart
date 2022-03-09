@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:uchow/controllers/user_controller.dart';
 import 'package:uchow/helpers/api.dart';
@@ -10,12 +11,13 @@ class EmailAuth {
   }
   factory EmailAuth() => _instance;
 
+  var server = dotenv.env["SERVER_BASE_URL"]!;
   final Api api = Api();
   final UserController userController = Get.find<UserController>();
 
   Future<LocalResponse> signUp(
       String name, String email, String password) async {
-    var res = await api.post("http://192.168.43.108:5000/api/auth/signup",
+    var res = await api.post(server + "/auth/signup",
         body: {"name": name, "email": email, "password": password});
     if (res["success"] == null) {
       userController.setUser(res);
@@ -26,7 +28,8 @@ class EmailAuth {
   }
 
   Future<LocalResponse> signIn(String email, String password) async {
-    var res = await api.post("http://192.168.43.108:5000/api/auth/signin",
+    print(server + "/auth/signin");
+    var res = await api.post(server + "/auth/signin",
         body: {"email": email, "password": password});
     if (res["success"] == null) {
       userController.setUser(res);

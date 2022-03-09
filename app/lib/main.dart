@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:uchow/controllers/bag_controller.dart';
 import 'package:uchow/controllers/user_controller.dart';
@@ -17,6 +18,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:uchow/utils/colors.dart';
 
 void main() async {
+  await dotenv.load();
   await GetStorage.init();
   runApp(const UChow());
 }

@@ -183,17 +183,17 @@ class _SignInState extends State<SignIn> {
                           color: AppColors.primaryBlackColor)
                     ],
                   ),
-                  SizedBox(height: AppDimensions.height14),
-                  AppTextButtonWithIcon(
-                      onPressed: () async {
-                        LocalResponse res = await googleAuth.handleSignIn();
-                        res.success == true
-                            ? Get.toNamed("/")
-                            : setError(res.message);
-                      },
-                      image:
-                          "https://hackaday.com/wp-content/uploads/2016/08/google-g-logo.png?resize=50",
-                      text: "Continue with Google")
+                  // SizedBox(height: AppDimensions.height14),
+                  // AppTextButtonWithIcon(
+                  //     onPressed: () async {
+                  //       LocalResponse res = await googleAuth.handleSignIn();
+                  //       res.success == true
+                  //           ? Get.toNamed("/")
+                  //           : setError(res.message);
+                  //     },
+                  //     image:
+                  //         "https://hackaday.com/wp-content/uploads/2016/08/google-g-logo.png?resize=50",
+                  //     text: "Continue with Google")
                 ],
               )),
         ),

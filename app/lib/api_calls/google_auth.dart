@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:uchow/helpers/api.dart';
@@ -12,6 +13,7 @@ class GoogleAuth {
   }
   factory GoogleAuth() => _instance;
 
+  var server = dotenv.env["SERVER_BASE_URL"]!;
   final api = Api();
   final UserController userController = Get.find<UserController>();
   final GoogleSignIn googleSignIn = GoogleSignIn(
@@ -43,8 +45,7 @@ class GoogleAuth {
   }
 
   Future<LocalResponse> sendToBackend(GoogleSignInAccount? account) async {
-    var res =
-        await api.post("http://192.168.43.108:5000/api/auth/glogin", body: {
+    var res = await api.post(server + "/auth/glogin", body: {
       "name": account?.displayName,
       "email": account?.email,
       "id": account?.id,
