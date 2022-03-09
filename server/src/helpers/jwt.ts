@@ -23,3 +23,7 @@ export const getRefreshToken = (payload: Object) => {
     expiresIn: eval(process.env.REFRESH_TOKEN_EXPIRY!),
   });
 };
+
+export const verifyToken = (token: string) => {
+  return jwt.verify(token, process.env.REFRESH_TOKEN_SECRET!) as jwt.JwtPayload;
+};

@@ -9,6 +9,7 @@ export interface User {
   favorites: number[];
   image: String;
   payment_methods: String;
+  refresh_tokens: string[];
   created_at: Date;
   modified_at: Date;
 }

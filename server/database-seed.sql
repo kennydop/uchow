@@ -9,6 +9,7 @@ CREATE TABLE users (
   favorites INT [],
   image VARCHAR,
   payment_methods JSON [],
+  refresh_tokens VARCHAR [],
   created_at TIMESTAMPTZ NOT NULL,
   modified_at TIMESTAMPTZ NOT NULL
 );
