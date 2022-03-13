@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uchow/controllers/user_controller.dart';
-import 'package:uchow/screens/auth/signin.dart';
 import 'package:uchow/screens/bag.dart';
 import 'package:uchow/screens/explore.dart';
 import 'package:uchow/screens/favorites.dart';
+import 'package:uchow/services/api.dart';
 import 'package:uchow/utils/app_icons.dart';
 import 'package:uchow/utils/colors.dart';
 
@@ -27,6 +27,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
+    final Api api = Api();
+
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -38,6 +40,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
           setState(() {
             _currentIndex = i;
           });
+          userController.refreshToken();
         },
         items: const [
           BottomNavigationBarItem(

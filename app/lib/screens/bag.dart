@@ -138,9 +138,7 @@ class Bag extends StatelessWidget {
                             itemBuilder: ((context, index) {
                               if (paymentOptions[index]["available"] == true) {
                                 return AppTextButtonWithIcon(
-                                  onPressed: () {
-                                    print("you");
-                                  },
+                                  onPressed: () {},
                                   text: paymentOptions[index]["name"],
                                   image: paymentOptions[index]["image"],
                                 );

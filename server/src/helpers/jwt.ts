@@ -13,13 +13,13 @@ export const COOKIE_OPTIONS: CookieOptions = {
 };
 
 export const getToken = (payload: Object) => {
-  return jwt.sign({ data: payload }, process.env.JWT_SECRET!, {
+  return jwt.sign(payload, process.env.JWT_SECRET!, {
     expiresIn: eval(process.env.SESSION_EXPIRY!),
   });
 };
 
 export const getRefreshToken = (payload: Object) => {
-  return jwt.sign({ data: payload }, process.env.REFRESH_TOKEN_SECRET!, {
+  return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET!, {
     expiresIn: eval(process.env.REFRESH_TOKEN_EXPIRY!),
   });
 };

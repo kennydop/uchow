@@ -39,8 +39,8 @@ export const googleLogin = async (
         });
     }
     const results = refactorUserData(user);
-    const token: String = getToken(user);
-    const refreshToken: String = await dbAddRefreshToken(user);
+    const token: String = getToken(results);
+    const refreshToken: String = await dbAddRefreshToken(results);
     res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
     return res.status(200).json({ token: token, ...results });
   } catch (error) {
@@ -69,8 +69,8 @@ export const emailSignUp = async (
         throw new Error(error);
       });
     const results = refactorUserData(user);
-    const token: String = getToken(user);
-    const refreshToken: String = await dbAddRefreshToken(user);
+    const token: String = getToken(results);
+    const refreshToken: String = await dbAddRefreshToken(results);
     res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
     return res.status(200).json({ token: token, ...results });
   } catch (error) {
@@ -99,15 +99,14 @@ export const emailSignIn = async (
         throw new Error("Incorrect Password");
       }
       const results = refactorUserData(user);
-      const token: String = getToken(user);
-      const refreshToken: String = await dbAddRefreshToken(user);
+      const token: String = getToken(results);
+      const refreshToken: String = await dbAddRefreshToken(results);
       res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
       return res.status(200).json({ token: token, ...results });
     } else {
       throw new Error("Account not found");
     }
   } catch (error) {
-    console.log(error);
     const { status, ...rest } = serverError(error);
     return res.status(status).json(rest);
   }
@@ -118,8 +117,8 @@ export const refreshToken = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { signedCookies = {} } = req;
-  const { refreshToken } = signedCookies;
+  const authToken = req.headers.authorization;
+  const refreshToken: any = authToken?.split("s%3A")[1];
   if (refreshToken) {
     try {
       const payload = verifyToken(refreshToken);
@@ -133,25 +132,33 @@ export const refreshToken = async (
           throw new Error(error);
         });
       if (user) {
-        const refreshTokens: Array<string> = user.refreshTokens;
-        const tokenIndex = refreshTokens.findIndex(refreshToken);
+        const refreshTokens: Array<string> = user.refresh_tokens;
+        console.log(refreshTokens);
+        console.log(refreshToken);
+        const tokenIndex = refreshTokens.findIndex((r) => r === refreshToken);
         if (tokenIndex == -1) throw new Error("Unauthorized");
         const results = refactorUserData(user);
-        const newToken: String = getToken(user);
-        const newRefreshToken: String = await dbAddRefreshToken(user);
+        const newToken: String = getToken(results);
+        const newRefreshToken: String = await dbAddRefreshToken(results);
         res.cookie("refreshToken", newRefreshToken, COOKIE_OPTIONS);
         return res.status(200).json({ token: newToken, ...results });
       } else {
         throw new Error("Account not found");
       }
     } catch (error) {
+      console.log(error);
       const { status, ...rest } = serverError(error);
-      res.status(status).json(rest);
-      next();
+      return res.status(status).json(rest);
     }
   } else {
-    res.status(401).json("Unauthorized");
-    next();
+    console.log("nft:::::::::::::::::::");
+
+    const { status, ...rest } = serverError({
+      statusCode: 401,
+      success: false,
+      message: "Unauthorized",
+    });
+    return res.status(status).json(rest);
   }
 };
 

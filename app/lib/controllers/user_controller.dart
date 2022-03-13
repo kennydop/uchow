@@ -1,11 +1,27 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:uchow/models/user_model.dart';
-import 'package:uchow/api_calls/google_auth.dart';
+import 'package:uchow/services/api.dart';
 
 class UserController extends GetxController {
   UserModel user = UserModel(token: "", id: 0, name: "", email: "");
+  final Api api = Api();
+  RxBool loading = false.obs;
+
+  @override
+  void onInit() async {
+    loading = true.obs;
+    await api.getRefreshToken();
+    var res = await api.refreshToken();
+    if (res == null) return;
+    setUser(res);
+    super.onInit();
+  }
+
+  refreshToken() async {
+    var res = await api.refreshToken();
+    if (res == null) return;
+    setUser(res);
+  }
 
   void setUser(res) {
     user = UserModel(
@@ -18,5 +34,7 @@ class UserController extends GetxController {
       diliveryAddress: res["dilivery_address"] ?? "",
     );
     update();
+    Get.toNamed('/');
+    loading = false.obs;
   }
 }

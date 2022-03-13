@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:uchow/controllers/user_controller.dart';
-import 'package:uchow/helpers/api.dart';
+import 'package:uchow/services/api.dart';
 import 'package:uchow/interfaces/interfaces.dart';
 
 class EmailAuth {
@@ -28,7 +28,6 @@ class EmailAuth {
   }
 
   Future<LocalResponse> signIn(String email, String password) async {
-    print(server + "/auth/signin");
     var res = await api.post(server + "/auth/signin",
         body: {"email": email, "password": password});
     if (res["success"] == null) {
