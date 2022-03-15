@@ -73,89 +73,92 @@ class Bag extends StatelessWidget {
           ),
         ]),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.bottomSheet(BottomSheet(
-              onClosing: () {},
-              backgroundColor: AppColors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(AppDimensions.height16))),
-              builder: (context) {
-                return Container(
-                  padding: EdgeInsets.all(AppMargin.vertical),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppText(
-                          text: "Check Out",
-                          type: 'title',
-                          size: AppDimensions.height16),
-                      SizedBox(height: AppMargin.vertical),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AppText(text: "Subtotal:"),
-                            AppText(
-                                text: bagController
-                                    .calculateSubTotal()
-                                    .toStringAsFixed(2)),
-                          ]),
-                      SizedBox(height: AppDimensions.height6),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AppText(text: "Dilivery:"),
-                            AppText(text: "Free"),
-                          ]),
-                      SizedBox(height: AppDimensions.height6),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      floatingActionButton: Obx(() => bagController.bag.isNotEmpty
+          ? FloatingActionButton(
+              onPressed: () {
+                Get.bottomSheet(BottomSheet(
+                  onClosing: () {},
+                  backgroundColor: AppColors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(AppDimensions.height16))),
+                  builder: (context) {
+                    return Container(
+                      padding: EdgeInsets.all(AppMargin.vertical),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AppText(text: "Total:"),
                           AppText(
-                              text: bagController
-                                  .calculateSubTotal()
-                                  .toStringAsFixed(2)),
+                              text: "Check Out",
+                              type: 'title',
+                              size: AppDimensions.height16),
+                          SizedBox(height: AppMargin.vertical),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppText(text: "Subtotal:"),
+                                AppText(
+                                    text: bagController
+                                        .calculateSubTotal()
+                                        .toStringAsFixed(2)),
+                              ]),
+                          SizedBox(height: AppDimensions.height6),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                AppText(text: "Dilivery:"),
+                                AppText(text: "Free"),
+                              ]),
+                          SizedBox(height: AppDimensions.height6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              AppText(text: "Total:"),
+                              AppText(
+                                  text: bagController
+                                      .calculateSubTotal()
+                                      .toStringAsFixed(2)),
+                            ],
+                          ),
+                          SizedBox(
+                            height: AppDimensions.height16,
+                          ),
+                          AppText(
+                              text: "Pay With:",
+                              type: 'title',
+                              size: AppDimensions.height16),
+                          SizedBox(height: AppMargin.vertical),
+                          MediaQuery.removePadding(
+                            context: context,
+                            removeTop: true,
+                            removeBottom: true,
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: paymentOptions.length,
+                                itemBuilder: ((context, index) {
+                                  if (paymentOptions[index]["available"] ==
+                                      true) {
+                                    return AppTextButtonWithIcon(
+                                      onPressed: () {},
+                                      text: paymentOptions[index]["name"],
+                                      image: paymentOptions[index]["image"],
+                                    );
+                                  } else {
+                                    return const SizedBox.shrink();
+                                  }
+                                })),
+                          )
                         ],
                       ),
-                      SizedBox(
-                        height: AppDimensions.height16,
-                      ),
-                      AppText(
-                          text: "Pay With:",
-                          type: 'title',
-                          size: AppDimensions.height16),
-                      SizedBox(height: AppMargin.vertical),
-                      MediaQuery.removePadding(
-                        context: context,
-                        removeTop: true,
-                        removeBottom: true,
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: paymentOptions.length,
-                            itemBuilder: ((context, index) {
-                              if (paymentOptions[index]["available"] == true) {
-                                return AppTextButtonWithIcon(
-                                  onPressed: () {},
-                                  text: paymentOptions[index]["name"],
-                                  image: paymentOptions[index]["image"],
-                                );
-                              } else {
-                                return const SizedBox.shrink();
-                              }
-                            })),
-                      )
-                    ],
-                  ),
-                );
+                    );
+                  },
+                ));
               },
-            ));
-          },
-          backgroundColor: AppColors.secondaryColor,
-          child: const Icon(Icons.shopping_cart_checkout_rounded),
-          splashColor: AppColors.primaryColor),
+              backgroundColor: AppColors.secondaryColor,
+              child: const Icon(Icons.shopping_cart_checkout_rounded),
+              splashColor: AppColors.primaryColor)
+          : SizedBox.shrink()),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

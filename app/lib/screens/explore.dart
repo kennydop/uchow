@@ -43,21 +43,21 @@ class _ExploreState extends State<Explore> {
                           AppText(text: "Good Morning, "),
                           AppText(text: user.name.split(" ")[0])
                         ]),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed("/profile");
-                          },
-                          child: Ink(
-                            child: CircleAvatar(
-                              backgroundColor: AppColors.white,
-                              backgroundImage: NetworkImage(user.image!.isEmpty
-                                  ? "https://cdn.business2community.com/wp-content/uploads/2014/08/My_profile-orange.png"
-                                  : user.image!),
-                              minRadius: AppDimensions.height20,
-                              maxRadius: AppDimensions.height20,
-                            ),
-                          ),
-                        )
+                        // InkWell(
+                        //   onTap: () {
+                        //     Get.toNamed("/profile");
+                        //   },
+                        //   child: Ink(
+                        //     child: CircleAvatar(
+                        //       backgroundColor: AppColors.white,
+                        //       backgroundImage: NetworkImage(user.image!.isEmpty
+                        //           ? "https://cdn.business2community.com/wp-content/uploads/2014/08/My_profile-orange.png"
+                        //           : user.image!),
+                        //       minRadius: AppDimensions.height20,
+                        //       maxRadius: AppDimensions.height20,
+                        //     ),
+                        //   ),
+                        // )
                       ]),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
