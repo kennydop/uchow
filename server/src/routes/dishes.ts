@@ -11,6 +11,6 @@ const router = Router();
 router
   .get("/", getAllDishes)
   .get("/:id", getDish)
-  .get("/popular/:uni", getPopularDishes)
+  .get("/popular/:city", getPopularDishes)
   .post("/", addDish);
 export default router;

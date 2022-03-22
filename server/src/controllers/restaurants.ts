@@ -47,12 +47,12 @@ export const addResturant = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { name, tel, description, location, image, college } = req.body;
+  const { name, tel, description, city, image } = req.body;
   try {
     const restaurants: QueryResultRow = await db
       .query(
-        "INSERT INTO restaurants(name, tel, description, location, image, college) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
-        [name, tel, description, location, image, college]
+        "INSERT INTO restaurants(name, tel, description, city, image) VALUES($1, $2, $3, $4, $5) RETURNING *",
+        [name, tel, description, city, image]
       )
       .then((payload) => {
         return payload.rows[0];

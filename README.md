@@ -1,3 +1,3 @@
 # uchow
 
-University food ordering app.
+Food dilivery services.

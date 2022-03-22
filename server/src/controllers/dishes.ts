@@ -74,8 +74,8 @@ export const getPopularDishes = async (
   try {
     const popular: QueryResultRow = await db
       .query(
-        "SELECT dishes.id, dishes.restaurant_id AS restaurantID, dishes.name, dishes.price, dishes.toppings, dishes.image, dishes.description, dishes.purchases, restaurants.name AS restaurantName, restaurants.location AS restaurantLocation FROM dishes JOIN restaurants ON restaurant_id=restaurants.id WHERE restaurants.college=$1 ORDER BY dishes.purchases DESC",
-        [req.params.uni]
+        "SELECT dishes.id, dishes.restaurant_id AS restaurantID, dishes.name, dishes.price, dishes.toppings, dishes.image, dishes.description, dishes.purchases, restaurants.name AS restaurantName, restaurants.city AS restaurantCity FROM dishes JOIN restaurants ON restaurant_id=restaurants.id WHERE restaurants.city=$1 ORDER BY dishes.purchases DESC",
+        [capitalizeFirstLetter(req.params.city)]
       )
       .then((payload) => {
         return payload.rows;
@@ -83,10 +83,13 @@ export const getPopularDishes = async (
       .catch((error) => {
         throw new Error(error);
       });
-    console.log(popular);
     return res.status(200).json(popular);
   } catch (error) {
     const { status, ...rest } = serverError(error);
     return res.status(status).json(rest);
   }
 };
+
+function capitalizeFirstLetter(string: String): String {
+  return string[0].toUpperCase() + string.slice(1).toLowerCase();
+}
